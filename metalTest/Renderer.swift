@@ -38,7 +38,7 @@ class Renderer : NSObject, MTKViewDelegate{
         plane = Entity(device: device, model: "plane")
         plane.scale(vec3(2))
         
-        depthStencilState = createBasicDepthStencilState(device, depth: true)
+        depthStencilState = createBasicDepthStencilState(device)
         preStencilState = createDepthStencilStateForCreatingCanvas(device)
         postStencilState = createDepthStencilStateForUsingCanvas(device)
       

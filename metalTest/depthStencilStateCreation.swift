@@ -41,9 +41,9 @@ func createDepthStencilStateForCreatingCanvas(_ device: MTLDevice)-> MTLDepthSte
     
     return device.makeDepthStencilState(descriptor: depthDescriptor)!
 }
-func createBasicDepthStencilState(_ device: MTLDevice, depth: Bool) -> MTLDepthStencilState{
+func createBasicDepthStencilState(_ device: MTLDevice) -> MTLDepthStencilState{
     let depthDescriptor = MTLDepthStencilDescriptor()
-    depthDescriptor.isDepthWriteEnabled = depth
+    depthDescriptor.isDepthWriteEnabled = true
     depthDescriptor.depthCompareFunction = MTLCompareFunction.lessEqual
     return device.makeDepthStencilState(descriptor: depthDescriptor)!
 }
