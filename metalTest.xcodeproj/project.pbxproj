@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		810957B0262304EA003388F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810957AF262304EA003388F3 /* AppDelegate.swift */; };
-		810957B2262304EA003388F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810957B1262304EA003388F3 /* ViewController.swift */; };
 		810957B4262304EC003388F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 810957B3262304EC003388F3 /* Assets.xcassets */; };
 		810957B7262304ED003388F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 810957B5262304ED003388F3 /* Main.storyboard */; };
 		813A4DF826230AE500EDED21 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813A4DF726230AE500EDED21 /* Renderer.swift */; };
@@ -18,12 +17,13 @@
 		8181F57E262498F60023DA74 /* vertexBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181F57D262498F60023DA74 /* vertexBuffer.swift */; };
 		8181F5862624A1C10023DA74 /* entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181F5852624A1C10023DA74 /* entities.swift */; };
 		8181F58B2624B2C90023DA74 /* camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181F58A2624B2C90023DA74 /* camera.swift */; };
+		81CC91632625FF5500CD2858 /* depthStencilStateCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */; };
+		81CC91662626178200CD2858 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC91652626178200CD2858 /* GameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		810957AC262304EA003388F3 /* metalTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = metalTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		810957AF262304EA003388F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		810957B1262304EA003388F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		810957B3262304EC003388F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		810957B6262304ED003388F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		810957B8262304ED003388F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +36,8 @@
 		8181F57D262498F60023DA74 /* vertexBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vertexBuffer.swift; sourceTree = "<group>"; };
 		8181F5852624A1C10023DA74 /* entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = entities.swift; sourceTree = "<group>"; };
 		8181F58A2624B2C90023DA74 /* camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = camera.swift; sourceTree = "<group>"; };
+		81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = depthStencilStateCreation.swift; sourceTree = "<group>"; };
+		81CC91652626178200CD2858 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				813A4E1826243D1100EDED21 /* UIStuff */,
 				813A4E0F2623211700EDED21 /* shaders */,
 				813A4DF726230AE500EDED21 /* Renderer.swift */,
+				81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */,
 			);
 			path = metalTest;
 			sourceTree = "<group>";
@@ -91,8 +94,8 @@
 		813A4E1826243D1100EDED21 /* UIStuff */ = {
 			isa = PBXGroup;
 			children = (
-				810957B1262304EA003388F3 /* ViewController.swift */,
 				810957AF262304EA003388F3 /* AppDelegate.swift */,
+				81CC91652626178200CD2858 /* GameView.swift */,
 			);
 			path = UIStuff;
 			sourceTree = "<group>";
@@ -197,9 +200,10 @@
 			files = (
 				8181F58B2624B2C90023DA74 /* camera.swift in Sources */,
 				8181F579262493DB0023DA74 /* model.swift in Sources */,
-				810957B2262304EA003388F3 /* ViewController.swift in Sources */,
 				813A4DF826230AE500EDED21 /* Renderer.swift in Sources */,
+				81CC91662626178200CD2858 /* GameView.swift in Sources */,
 				8181F57E262498F60023DA74 /* vertexBuffer.swift in Sources */,
+				81CC91632625FF5500CD2858 /* depthStencilStateCreation.swift in Sources */,
 				810957B0262304EA003388F3 /* AppDelegate.swift in Sources */,
 				8181F5862624A1C10023DA74 /* entities.swift in Sources */,
 				813A4E112623213000EDED21 /* shaders.metal in Sources */,

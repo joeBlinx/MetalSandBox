@@ -38,11 +38,10 @@ class Renderer : NSObject, MTKViewDelegate{
         plane = Entity(device: device, model: "plane")
         plane.scale(vec3(2))
         
-        depthStencilState =  Renderer.createDepthDescriptor(self.device, depth: true)
-        preStencilState = Renderer.createNoDepthTest(device)
-        postStencilState = Renderer.createPostStencil(device)
+        depthStencilState = createBasicDepthStencilState(device, depth: true)
+        preStencilState = createDepthStencilStateForCreatingCanvas(device)
+        postStencilState = createDepthStencilStateForUsingCanvas(device)
       
-        // we allocate the size of a 4D Matrix of float
     }
   
     func draw(in view:MTKView){
@@ -116,44 +115,5 @@ extension Renderer {
         renderpassDescriptor.stencilAttachment.loadAction = .clear
     }
     
-    private class func createPostStencil(_ device: MTLDevice) -> MTLDepthStencilState{
-        let stencilDescriptor = MTLStencilDescriptor()
-        stencilDescriptor.stencilCompareFunction = MTLCompareFunction.less
-        stencilDescriptor.depthStencilPassOperation = MTLStencilOperation.incrementClamp
-        stencilDescriptor.depthFailureOperation = MTLStencilOperation.keep
-        stencilDescriptor.stencilFailureOperation = .keep
-        stencilDescriptor.writeMask = 0xff
-        stencilDescriptor.readMask = 0xff
-        
-        let depthDescriptor = MTLDepthStencilDescriptor()
-        depthDescriptor.isDepthWriteEnabled = true
-        depthDescriptor.backFaceStencil = stencilDescriptor
-        depthDescriptor.frontFaceStencil = stencilDescriptor
-        depthDescriptor.depthCompareFunction = .lessEqual
-        
-        return device.makeDepthStencilState(descriptor: depthDescriptor)!
-    }
-    private class func createNoDepthTest(_ device: MTLDevice)-> MTLDepthStencilState{
-        
-        let stencilDescriptor = MTLStencilDescriptor()
-        stencilDescriptor.stencilCompareFunction = MTLCompareFunction.always
-        stencilDescriptor.depthStencilPassOperation = MTLStencilOperation.incrementClamp
-        stencilDescriptor.depthFailureOperation = MTLStencilOperation.incrementClamp
-        stencilDescriptor.writeMask = 0xff
-        stencilDescriptor.readMask = 0xff
-        
-        let depthDescriptor = MTLDepthStencilDescriptor()
-        depthDescriptor.isDepthWriteEnabled = false
-        depthDescriptor.backFaceStencil = stencilDescriptor
-        depthDescriptor.frontFaceStencil = stencilDescriptor
-        depthDescriptor.depthCompareFunction = .lessEqual
-        
-        return device.makeDepthStencilState(descriptor: depthDescriptor)!
-    }
-    private class func createDepthDescriptor(_ device: MTLDevice, depth: Bool) -> MTLDepthStencilState{
-        let depthDescriptor = MTLDepthStencilDescriptor()
-        depthDescriptor.isDepthWriteEnabled = depth
-        depthDescriptor.depthCompareFunction = MTLCompareFunction.lessEqual
-        return device.makeDepthStencilState(descriptor: depthDescriptor)!
-    }
+    
 }
