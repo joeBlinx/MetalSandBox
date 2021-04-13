@@ -45,39 +45,27 @@ class Renderer : NSObject, MTKViewDelegate{
     }
   
     func draw(in view:MTKView){
-        //cube.update()
+       
         guard let command_buffer = command_queue.makeCommandBuffer() else {return }
         guard let renderpass_descriptor = view.currentRenderPassDescriptor  else {return}
         Renderer.setRenderPassDescriptor(renderpass_descriptor)
         guard let render_encoder = command_buffer.makeRenderCommandEncoder(descriptor: renderpass_descriptor) else {return }
         
-        let (buffer, indices) = cube.getDrawings()
         render_encoder.setRenderPipelineState(pipelineState)
         
         render_encoder.setDepthStencilState(self.depthStencilState)
-        render_encoder.setCullMode(MTLCullMode.none)
-        
-        render_encoder.setVertexBuffer(buffer, offset: 0, index: 0)
-        
-        render_encoder.setVertexBytes(cube.getModel().elements, length: MemoryLayout<mat4>.size, index: 1)
-       
         render_encoder.setVertexBytes(self.camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
-       
-        render_encoder.drawIndexedPrimitives(type: .triangle, indexCount: indices.count, indexType: .uint32, indexBuffer: buffer, indexBufferOffset: indices.offset)
+        
+        cube.draw(encoder: render_encoder)
         render_encoder.setDepthStencilState(preStencilState)
-        let (bufferPlane, indicesPlane) = plane.getDrawings()
-        render_encoder.setVertexBuffer(bufferPlane, offset: 0, index: 0)
-        render_encoder.setVertexBytes(plane.getModel().elements, length: MemoryLayout<mat4>.size, index: 1)
-        render_encoder.drawIndexedPrimitives(type: .triangle, indexCount: indicesPlane.count, indexType: .uint32, indexBuffer: bufferPlane, indexBufferOffset: indicesPlane.offset)
+        plane.draw(encoder: render_encoder)
         
-        render_encoder.setVertexBuffer(buffer, offset: 0, index: 0)
-        
+
         cube.rotate(vec3(0, 0, 1), angle: 3.14159)
         cube.move(vec3(0, 2, 0))
         
         render_encoder.setDepthStencilState(postStencilState)
-        render_encoder.setVertexBytes(cube.getModel().elements, length: MemoryLayout<mat4>.size, index: 1)
-        render_encoder.drawIndexedPrimitives(type: .triangle, indexCount: indices.count, indexType: .uint32, indexBuffer: buffer, indexBufferOffset: indices.offset)
+        cube.draw(encoder: render_encoder)
         render_encoder.endEncoding()
         cube.rotate(vec3(0, 0, 1), angle: 3.14159)
         cube.move(vec3(0, 2, 0))

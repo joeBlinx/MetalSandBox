@@ -29,6 +29,6 @@ class GameView: MTKView{
         }
         renderer = renderer_temp
         delegate = renderer
-        
+    	
     }
 }

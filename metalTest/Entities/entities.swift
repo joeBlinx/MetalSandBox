@@ -19,15 +19,17 @@ class Entity{
     init(device: MTLDevice, model: String){
         buffer = VertexBuffer.init(device, model: Entity.entitiesModel[model]!)
     }
-    init(_ src: Entity){
-        model = src.model;
-        buffer = src.buffer;
-    }
 }
 
 extension Entity{
     
-   
+    func draw(encoder: MTLRenderCommandEncoder){
+        
+        let (buffer, indices) = getDrawings()
+        encoder.setVertexBuffer(buffer, offset: 0, index: 0)
+        encoder.setVertexBytes(getModel().elements, length: MemoryLayout<mat4>.size, index: 1)
+        encoder.drawIndexedPrimitives(type: .triangle, indexCount: indices.count, indexType: .uint32, indexBuffer: buffer, indexBufferOffset: indices.offset)
+    }
     func getDrawings() -> (MTLBuffer, Indices){
         return (buffer.buffer, buffer.indices)
     }
