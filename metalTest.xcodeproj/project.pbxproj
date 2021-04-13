@@ -20,23 +20,6 @@
 		8181F58B2624B2C90023DA74 /* camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181F58A2624B2C90023DA74 /* camera.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		810957BF262304ED003388F3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 810957A4262304EA003388F3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 810957AB262304EA003388F3;
-			remoteInfo = metalTest;
-		};
-		810957CA262304ED003388F3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 810957A4262304EA003388F3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 810957AB262304EA003388F3;
-			remoteInfo = metalTest;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		810957AC262304EA003388F3 /* metalTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = metalTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		810957AF262304EA003388F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,8 +28,6 @@
 		810957B6262304ED003388F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		810957B8262304ED003388F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		810957B9262304ED003388F3 /* metalTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = metalTest.entitlements; sourceTree = "<group>"; };
-		810957BE262304ED003388F3 /* metalTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = metalTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		810957C9262304ED003388F3 /* metalTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = metalTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		813A4DF726230AE500EDED21 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		813A4E0D2623204E00EDED21 /* metalTest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "metalTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		813A4E0E2623206D00EDED21 /* shader_definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shader_definitions.h; sourceTree = "<group>"; };
@@ -66,20 +47,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		810957BB262304ED003388F3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		810957C6262304ED003388F3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -95,8 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				810957AC262304EA003388F3 /* metalTest.app */,
-				810957BE262304ED003388F3 /* metalTestTests.xctest */,
-				810957C9262304ED003388F3 /* metalTestUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,14 +69,10 @@
 		810957AE262304EA003388F3 /* metalTest */ = {
 			isa = PBXGroup;
 			children = (
+				81CC91492625FC6400CD2858 /* OtherFiles */,
 				8181F577262493AF0023DA74 /* Entities */,
-				813A4E0D2623204E00EDED21 /* metalTest-Bridging-Header.h */,
 				813A4E1826243D1100EDED21 /* UIStuff */,
 				813A4E0F2623211700EDED21 /* shaders */,
-				810957B3262304EC003388F3 /* Assets.xcassets */,
-				810957B5262304ED003388F3 /* Main.storyboard */,
-				810957B8262304ED003388F3 /* Info.plist */,
-				810957B9262304ED003388F3 /* metalTest.entitlements */,
 				813A4DF726230AE500EDED21 /* Renderer.swift */,
 			);
 			path = metalTest;
@@ -120,6 +81,7 @@
 		813A4E0F2623211700EDED21 /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				813A4E0D2623204E00EDED21 /* metalTest-Bridging-Header.h */,
 				813A4E0E2623206D00EDED21 /* shader_definitions.h */,
 				813A4E102623213000EDED21 /* shaders.metal */,
 			);
@@ -146,6 +108,17 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		81CC91492625FC6400CD2858 /* OtherFiles */ = {
+			isa = PBXGroup;
+			children = (
+				810957B9262304ED003388F3 /* metalTest.entitlements */,
+				810957B8262304ED003388F3 /* Info.plist */,
+				810957B3262304EC003388F3 /* Assets.xcassets */,
+				810957B5262304ED003388F3 /* Main.storyboard */,
+			);
+			path = OtherFiles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -169,42 +142,6 @@
 			productReference = 810957AC262304EA003388F3 /* metalTest.app */;
 			productType = "com.apple.product-type.application";
 		};
-		810957BD262304ED003388F3 /* metalTestTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 810957D5262304ED003388F3 /* Build configuration list for PBXNativeTarget "metalTestTests" */;
-			buildPhases = (
-				810957BA262304ED003388F3 /* Sources */,
-				810957BB262304ED003388F3 /* Frameworks */,
-				810957BC262304ED003388F3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				810957C0262304ED003388F3 /* PBXTargetDependency */,
-			);
-			name = metalTestTests;
-			productName = metalTestTests;
-			productReference = 810957BE262304ED003388F3 /* metalTestTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		810957C8262304ED003388F3 /* metalTestUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 810957D8262304ED003388F3 /* Build configuration list for PBXNativeTarget "metalTestUITests" */;
-			buildPhases = (
-				810957C5262304ED003388F3 /* Sources */,
-				810957C6262304ED003388F3 /* Frameworks */,
-				810957C7262304ED003388F3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				810957CB262304ED003388F3 /* PBXTargetDependency */,
-			);
-			name = metalTestUITests;
-			productName = metalTestUITests;
-			productReference = 810957C9262304ED003388F3 /* metalTestUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -217,14 +154,6 @@
 					810957AB262304EA003388F3 = {
 						CreatedOnToolsVersion = 12.4;
 						LastSwiftMigration = 1240;
-					};
-					810957BD262304ED003388F3 = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = 810957AB262304EA003388F3;
-					};
-					810957C8262304ED003388F3 = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = 810957AB262304EA003388F3;
 					};
 				};
 			};
@@ -245,8 +174,6 @@
 			projectRoot = "";
 			targets = (
 				810957AB262304EA003388F3 /* metalTest */,
-				810957BD262304ED003388F3 /* metalTestTests */,
-				810957C8262304ED003388F3 /* metalTestUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,20 +185,6 @@
 			files = (
 				810957B4262304EC003388F3 /* Assets.xcassets in Resources */,
 				810957B7262304ED003388F3 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		810957BC262304ED003388F3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		810957C7262304ED003388F3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,34 +206,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		810957BA262304ED003388F3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		810957C5262304ED003388F3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		810957C0262304ED003388F3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 810957AB262304EA003388F3 /* metalTest */;
-			targetProxy = 810957BF262304ED003388F3 /* PBXContainerItemProxy */;
-		};
-		810957CB262304ED003388F3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 810957AB262304EA003388F3 /* metalTest */;
-			targetProxy = 810957CA262304ED003388F3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		810957B5262304ED003388F3 /* Main.storyboard */ = {
@@ -455,19 +341,19 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = metalTest/metalTest.entitlements;
+				CODE_SIGN_ENTITLEMENTS = metalTest/OtherFiles/metalTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TKSHWHPXGZ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = metalTest/Info.plist;
+				INFOPLIST_FILE = metalTest/OtherFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.stiven.metalTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "metalTest/metalTest-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "metalTest/shaders/metalTest-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -479,104 +365,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = metalTest/metalTest.entitlements;
+				CODE_SIGN_ENTITLEMENTS = metalTest/OtherFiles/metalTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TKSHWHPXGZ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = metalTest/Info.plist;
+				INFOPLIST_FILE = metalTest/OtherFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.stiven.metalTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "metalTest/metalTest-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "metalTest/shaders/metalTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		810957D6262304ED003388F3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = TKSHWHPXGZ;
-				INFOPLIST_FILE = metalTestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stiven.metalTestTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/metalTest.app/Contents/MacOS/metalTest";
-			};
-			name = Debug;
-		};
-		810957D7262304ED003388F3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = TKSHWHPXGZ;
-				INFOPLIST_FILE = metalTestTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = com.stiven.metalTestTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/metalTest.app/Contents/MacOS/metalTest";
-			};
-			name = Release;
-		};
-		810957D9262304ED003388F3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = TKSHWHPXGZ;
-				INFOPLIST_FILE = metalTestUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stiven.metalTestUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = metalTest;
-			};
-			name = Debug;
-		};
-		810957DA262304ED003388F3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = TKSHWHPXGZ;
-				INFOPLIST_FILE = metalTestUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stiven.metalTestUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = metalTest;
 			};
 			name = Release;
 		};
@@ -597,24 +399,6 @@
 			buildConfigurations = (
 				810957D3262304ED003388F3 /* Debug */,
 				810957D4262304ED003388F3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		810957D5262304ED003388F3 /* Build configuration list for PBXNativeTarget "metalTestTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				810957D6262304ED003388F3 /* Debug */,
-				810957D7262304ED003388F3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		810957D8262304ED003388F3 /* Build configuration list for PBXNativeTarget "metalTestUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				810957D9262304ED003388F3 /* Debug */,
-				810957DA262304ED003388F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

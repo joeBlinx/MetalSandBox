@@ -2,5 +2,5 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-#include "shaders/shader_definitions.h"
+#include "shader_definitions.h"
 
