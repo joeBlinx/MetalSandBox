@@ -18,12 +18,12 @@ class Scene{
         cube = Entity(device: device, model: "cube")
         cube.setTexture(device: device, textureName: "realCat.jpg")
         cube.setMaterial(useTexture: 1)
-        cube.move(vec3(0, 1, 0))
+        cube.move(vec3(0, 1.1, 0))
         
         reflectionCube = Entity(device: device, model: "cube")
         reflectionCube.setMaterial(useTexture: 1, invertUv: 1)
         reflectionCube.setTexture(device: device, textureName: "realCat.jpg")
-        reflectionCube.move(vec3(0, -1, 0))
+        reflectionCube.move(vec3(0, -1.1, 0))
         
         plane = Entity(device: device, model: "plane")
         plane.scale(vec3(2))
