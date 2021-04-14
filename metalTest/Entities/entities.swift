@@ -29,7 +29,7 @@ extension Entity{
         
         let (buffer, indices) = getDrawings()
         encoder.setVertexBuffer(buffer, offset: 0, index: 0)
-        encoder.setVertexBytes(getModel().elements, length: MemoryLayout<mat4>.size, index: 1)
+        encoder.setVertexBytes(model.elements, length: MemoryLayout<mat4>.size, index: 1)
         encoder.setFragmentBytes(&material, length: MemoryLayout<MaterialBuffer>.size, index: 0)
         if(material.useTexture == 1){
             if let texture = texture{
@@ -42,9 +42,6 @@ extension Entity{
     }
     func getDrawings() -> (MTLBuffer, Indices){
         return (buffer.buffer, buffer.indices)
-    }
-    func getModel() -> mat4{
-        model
     }
     
     func setTexture(device: MTLDevice, textureName: String){

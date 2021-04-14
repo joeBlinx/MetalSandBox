@@ -20,10 +20,9 @@ class Renderer : NSObject, MTKViewDelegate{
     private let postStencilState: MTLDepthStencilState
     
     private let sampler:MTLSamplerState!
-
-    private let cube: Entity
-    private let plane: Entity
     private let camera = Camera.init()
+    
+    private let scene:Scene
     
     init?(_ mtk_view:MTKView){
         self.device = mtk_view.device!
@@ -34,14 +33,8 @@ class Renderer : NSObject, MTKViewDelegate{
             print("Unable to create pipeline state")
             return nil
         }
-       
-        cube = Entity.init(device: device, model: "cube")
-        cube.move(vec3(0, 1.01, 0))
-        plane = Entity(device: device, model: "plane")
-        plane.scale(vec3(2))
-        cube.setMaterial(useTexture: 1)
-        cube.setTexture(device: device, textureName: "cat.jpg")
-        
+        scene = Scene(device: device)
+     
         sampler = createLinearSampler(device: device)
         
         depthStencilState = createBasicDepthStencilState(device)
@@ -51,7 +44,7 @@ class Renderer : NSObject, MTKViewDelegate{
     }
   
     func draw(in view:MTKView){
-        cube.update()
+        scene.update()
         guard let command_buffer = command_queue.makeCommandBuffer() else {return }
         guard let renderpass_descriptor = view.currentRenderPassDescriptor  else {return}
         Renderer.setRenderPassDescriptor(renderpass_descriptor)
@@ -64,19 +57,15 @@ class Renderer : NSObject, MTKViewDelegate{
         render_encoder.setFragmentSamplerState(sampler, index: 0)
        
         
-        cube.draw(encoder: render_encoder)
+        scene.drawCube(encoder: render_encoder)
         render_encoder.setDepthStencilState(preStencilState)
 
-        plane.draw(encoder: render_encoder)
+        scene.drawPlane(encoder: render_encoder)
         
-        cube.move(vec3(0, -2, 0))
-        cube.setMaterial(invertUv: 1)
         render_encoder.setDepthStencilState(postStencilState)
     
-        cube.draw(encoder: render_encoder)
+        scene.drawReflectionCube(encoder: render_encoder)
         render_encoder.endEncoding()
-        cube.setMaterial(invertUv: 0)
-        cube.move(vec3(0, 2, 0))
         
         command_buffer.present(view.currentDrawable!)
         command_buffer.commit()
