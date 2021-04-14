@@ -7,15 +7,15 @@
 
 func cubeVertices() -> ([Vertex], [UInt32]){
     (
-        [Vertex(color: [1.0, 0.0, 0.0, 1.0], pos:[-1.0, 1.0, 1.0])
-        ,Vertex(color: [0.0, 1.0, 0.0, 1.0], pos:[-1.0,-1.0, 1.0])
-        ,Vertex(color: [0.0, 0.0, 1.0, 1.0], pos:[ 1.0,-1.0, 1.0])
-        ,Vertex(color: [0.1, 0.6, 0.4, 1.0], pos:[ 1.0, 1.0, 1.0])
+        [Vertex(color: [1.0, 0.0, 0.0, 1.0], pos:[-1.0, 1.0, 1.0], texCoord: [0, 1])
+        ,Vertex(color: [0.0, 1.0, 0.0, 1.0], pos:[-1.0,-1.0, 1.0], texCoord: [0, 0])
+        ,Vertex(color: [0.0, 0.0, 1.0, 1.0], pos:[ 1.0,-1.0, 1.0], texCoord: [1, 0])
+        ,Vertex(color: [0.1, 0.6, 0.4, 1.0], pos:[ 1.0, 1.0, 1.0], texCoord: [1, 1])
 
-        ,Vertex(color: [0.0, 0.0, 0.0, 1.0], pos:[-1.0, 1.0, -1.0])
-        ,Vertex(color: [1.0, 1.0, 1.0, 1.0], pos:[ 1.0, 1.0, -1.0])
-        ,Vertex(color: [0.0, 1.0, 1.0, 1.0], pos:[-1.0,-1.0, -1.0])
-        ,Vertex(color: [0.1, 0.6, 0.4, 1.0], pos:[ 1.0,-1.0, -1.0])],
+        ,Vertex(color: [0.0, 0.0, 0.0, 1.0], pos:[-1.0, 1.0, -1.0], texCoord: [0, 1])
+        ,Vertex(color: [1.0, 1.0, 1.0, 1.0], pos:[ 1.0, 1.0, -1.0], texCoord: [1, 1])
+        ,Vertex(color: [0.0, 1.0, 1.0, 1.0], pos:[-1.0,-1.0, -1.0], texCoord: [0, 0])
+        ,Vertex(color: [0.1, 0.6, 0.4, 1.0], pos:[ 1.0,-1.0, -1.0], texCoord: [1, 0])],
     
      [ 0,1,2 ,0,2,3,   //Front
        5,7,6 ,4,5,6,   //Back
@@ -31,10 +31,10 @@ func cubeVertices() -> ([Vertex], [UInt32]){
 func planeVertices() -> ([Vertex], [UInt32]){
     let color:vector_float4 = [0.1, 0.5, 0.5, 1]
     return (
-        [Vertex(color: color, pos: [-1, 0, -1]),
-         Vertex(color: color, pos: [1, 0, -1]),
-         Vertex(color: color, pos: [1, 0, 1]),
-         Vertex(color: color, pos: [-1, 0, 1])
+        [Vertex(color: color, pos: [-1, 0, -1], texCoord: [0, 0]),
+         Vertex(color: color, pos: [1, 0, -1], texCoord: [0, 1]),
+         Vertex(color: color, pos: [1, 0, 1], texCoord: [1, 1]),
+         Vertex(color: color, pos: [-1, 0, 1], texCoord: [1, 0])
         ],
         [0, 1, 2, 0, 2, 3]
     )

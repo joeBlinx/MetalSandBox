@@ -11,6 +11,7 @@ using namespace metal;
 struct VertexOut {
     float4 color;
     float4 pos [[position]];
+    float2 texCoord;
 };
 
 vertex VertexOut vertexShader(const device Vertex *vertexArray [[buffer(0)]],
@@ -20,12 +21,28 @@ vertex VertexOut vertexShader(const device Vertex *vertexArray [[buffer(0)]],
     
     auto vertex_in = vertexArray[vid];
     
-    return VertexOut{vertex_in.color, camera.vp * uni.model * float4(vertex_in.pos, 1)};
+    return VertexOut{vertex_in.color,
+        camera.vp * uni.model * float4(vertex_in.pos, 1),
+        vertex_in.texCoord};
     
 }
 
-fragment float4 fragmentShader(VertexOut interpolated [[stage_in]]){
-    return interpolated.color;
+fragment float4 fragmentShader(VertexOut interpolated [[ stage_in ]],
+                               sampler sampler2d[[ sampler(0) ]],
+                               texture2d<float> texture [[ texture(0) ]],
+                               const device MaterialBuffer& material [[ buffer(0) ]]){
+    
+    float4 color;
+    if(material.useTexture){
+        auto texCoord = interpolated.texCoord;
+        if(material.invertUV){
+            texCoord.y = 1 - texCoord.y;
+        }
+        color = texture.sample(sampler2d, texCoord);
+    }else{
+        color = interpolated.color;
+    }
+    return color;
 }
 
 

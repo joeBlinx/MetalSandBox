@@ -12,7 +12,7 @@ class Camera{
     private var proj: mat4
     
     init(){
-        view = SGLMath.lookAt(vec3(-10, 1.5, -5), vec3(0, 0.5, 0), vec3(0, 1, 0))
+        view = SGLMath.lookAt(vec3(-1, 1.5, -5), vec3(0, 0.5, 0), vec3(0, 1, 0))
         proj = SGLMath.perspective(70.0, 16.0/9.0, 0.1, 100.0)
     }
     

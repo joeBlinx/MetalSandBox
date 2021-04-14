@@ -18,6 +18,9 @@ class Renderer : NSObject, MTKViewDelegate{
     private let depthStencilState:MTLDepthStencilState
     private let preStencilState: MTLDepthStencilState
     private let postStencilState: MTLDepthStencilState
+    
+    private let texture:Texture
+    private let sampler:MTLSamplerState!
 
     private let cube: Entity
     private let plane: Entity
@@ -38,6 +41,18 @@ class Renderer : NSObject, MTKViewDelegate{
         plane = Entity(device: device, model: "plane")
         plane.scale(vec3(2))
         
+        texture = Texture(device: device, "cat.jpg")
+        
+        let descriptor = MTLSamplerDescriptor()
+        descriptor.minFilter = .linear
+        descriptor.magFilter = .linear
+        descriptor.label = "linear"
+        descriptor.rAddressMode = .repeat
+        descriptor.sAddressMode = .repeat
+        descriptor.tAddressMode = .repeat
+        sampler = device.makeSamplerState(descriptor: descriptor)
+        
+        
         depthStencilState = createBasicDepthStencilState(device)
         preStencilState = createDepthStencilStateForCreatingCanvas(device)
         postStencilState = createDepthStencilStateForUsingCanvas(device)
@@ -45,7 +60,7 @@ class Renderer : NSObject, MTKViewDelegate{
     }
   
     func draw(in view:MTKView){
-       
+        cube.update()
         guard let command_buffer = command_queue.makeCommandBuffer() else {return }
         guard let renderpass_descriptor = view.currentRenderPassDescriptor  else {return}
         Renderer.setRenderPassDescriptor(renderpass_descriptor)
@@ -55,19 +70,30 @@ class Renderer : NSObject, MTKViewDelegate{
         
         render_encoder.setDepthStencilState(self.depthStencilState)
         render_encoder.setVertexBytes(self.camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
+        render_encoder.setFragmentTexture(texture.texture, index: 0)
+        render_encoder.setFragmentSamplerState(sampler, index: 0)
+        var material = MaterialBuffer(useTexture: 1, invertUV: 0)
+       
+        
+        render_encoder.setFragmentBytes(&material, length: MemoryLayout<MaterialBuffer>.size, index: 0)
         
         cube.draw(encoder: render_encoder)
         render_encoder.setDepthStencilState(preStencilState)
+        material.useTexture = 0
+        render_encoder.setFragmentBytes(&material, length: MemoryLayout<MaterialBuffer>.size, index: 0)
         plane.draw(encoder: render_encoder)
         
 
-        cube.rotate(vec3(0, 0, 1), angle: 3.14159)
-        cube.move(vec3(0, 2, 0))
+        
+        cube.move(vec3(0, -2, 0))
         
         render_encoder.setDepthStencilState(postStencilState)
+        material.useTexture = 1;
+        material.invertUV = 1;
+        render_encoder.setFragmentBytes(&material, length: MemoryLayout<MaterialBuffer>.size, index: 0)
         cube.draw(encoder: render_encoder)
         render_encoder.endEncoding()
-        cube.rotate(vec3(0, 0, 1), angle: 3.14159)
+     
         cube.move(vec3(0, 2, 0))
         
         command_buffer.present(view.currentDrawable!)
