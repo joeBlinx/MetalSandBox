@@ -40,7 +40,7 @@ class Renderer : NSObject, MTKViewDelegate{
         cube.move(vec3(0, 1.01, 0))
         plane = Entity(device: device, model: "plane")
         plane.scale(vec3(2))
-        
+        cube.setMaterial(useTexture: 1)
         texture = Texture(device: device, "cat.jpg")
         
         let descriptor = MTLSamplerDescriptor()
@@ -72,28 +72,20 @@ class Renderer : NSObject, MTKViewDelegate{
         render_encoder.setVertexBytes(self.camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
         render_encoder.setFragmentTexture(texture.texture, index: 0)
         render_encoder.setFragmentSamplerState(sampler, index: 0)
-        var material = MaterialBuffer(useTexture: 1, invertUV: 0)
        
-        
-        render_encoder.setFragmentBytes(&material, length: MemoryLayout<MaterialBuffer>.size, index: 0)
         
         cube.draw(encoder: render_encoder)
         render_encoder.setDepthStencilState(preStencilState)
-        material.useTexture = 0
-        render_encoder.setFragmentBytes(&material, length: MemoryLayout<MaterialBuffer>.size, index: 0)
+
         plane.draw(encoder: render_encoder)
         
-
-        
         cube.move(vec3(0, -2, 0))
-        
+        cube.setMaterial(invertUv: 1)
         render_encoder.setDepthStencilState(postStencilState)
-        material.useTexture = 1;
-        material.invertUV = 1;
-        render_encoder.setFragmentBytes(&material, length: MemoryLayout<MaterialBuffer>.size, index: 0)
+    
         cube.draw(encoder: render_encoder)
         render_encoder.endEncoding()
-     
+        cube.setMaterial(invertUv: 0)
         cube.move(vec3(0, 2, 0))
         
         command_buffer.present(view.currentDrawable!)

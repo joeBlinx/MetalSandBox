@@ -19,6 +19,8 @@
 		8181F58B2624B2C90023DA74 /* camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181F58A2624B2C90023DA74 /* camera.swift */; };
 		81CC91632625FF5500CD2858 /* depthStencilStateCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */; };
 		81CC91662626178200CD2858 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC91652626178200CD2858 /* GameView.swift */; };
+		81CC916C2626CBC500CD2858 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC916B2626CBC500CD2858 /* Texture.swift */; };
+		81CC916F2626D0AD00CD2858 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 81CC916E2626D0AD00CD2858 /* cat.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		8181F58A2624B2C90023DA74 /* camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = camera.swift; sourceTree = "<group>"; };
 		81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = depthStencilStateCreation.swift; sourceTree = "<group>"; };
 		81CC91652626178200CD2858 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		81CC916B2626CBC500CD2858 /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		81CC916E2626D0AD00CD2858 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,12 +75,14 @@
 		810957AE262304EA003388F3 /* metalTest */ = {
 			isa = PBXGroup;
 			children = (
+				81CC91692626C11300CD2858 /* Assets */,
 				81CC91492625FC6400CD2858 /* OtherFiles */,
 				8181F577262493AF0023DA74 /* Entities */,
 				813A4E1826243D1100EDED21 /* UIStuff */,
 				813A4E0F2623211700EDED21 /* shaders */,
 				813A4DF726230AE500EDED21 /* Renderer.swift */,
 				81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */,
+				81CC916B2626CBC500CD2858 /* Texture.swift */,
 			);
 			path = metalTest;
 			sourceTree = "<group>";
@@ -120,6 +126,14 @@
 				810957B5262304ED003388F3 /* Main.storyboard */,
 			);
 			path = OtherFiles;
+			sourceTree = "<group>";
+		};
+		81CC91692626C11300CD2858 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				81CC916E2626D0AD00CD2858 /* cat.jpg */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81CC916F2626D0AD00CD2858 /* cat.jpg in Resources */,
 				810957B4262304EC003388F3 /* Assets.xcassets in Resources */,
 				810957B7262304ED003388F3 /* Main.storyboard in Resources */,
 			);
@@ -199,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8181F58B2624B2C90023DA74 /* camera.swift in Sources */,
+				81CC916C2626CBC500CD2858 /* Texture.swift in Sources */,
 				8181F579262493DB0023DA74 /* model.swift in Sources */,
 				813A4DF826230AE500EDED21 /* Renderer.swift in Sources */,
 				81CC91662626178200CD2858 /* GameView.swift in Sources */,

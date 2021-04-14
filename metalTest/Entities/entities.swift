@@ -15,6 +15,7 @@ class Entity{
     ]
     private var model: mat4 = mat4(1.0)
     private let buffer: VertexBuffer
+    private var material = MaterialBuffer(useTexture: 0, invertUV: 0)
     
     init(device: MTLDevice, model: String){
         buffer = VertexBuffer.init(device, model: Entity.entitiesModel[model]!)
@@ -28,6 +29,7 @@ extension Entity{
         let (buffer, indices) = getDrawings()
         encoder.setVertexBuffer(buffer, offset: 0, index: 0)
         encoder.setVertexBytes(getModel().elements, length: MemoryLayout<mat4>.size, index: 1)
+        encoder.setFragmentBytes(&material, length: MemoryLayout<MaterialBuffer>.size, index: 0)
         encoder.drawIndexedPrimitives(type: .triangle, indexCount: indices.count, indexType: .uint32, indexBuffer: buffer, indexBufferOffset: indices.offset)
     }
     func getDrawings() -> (MTLBuffer, Indices){
@@ -36,7 +38,11 @@ extension Entity{
     func getModel() -> mat4{
         model
     }
-    
+  
+    func setMaterial(useTexture:Int32 = -1, invertUv:Int32 = -1){
+        material.useTexture = useTexture != -1 ? useTexture: material.useTexture
+        material.invertUV = invertUv != -1 ? invertUv: material.invertUV
+    }
     func move(_ v: vec3){
         model = SGLMath.translate(model, v)
     }
