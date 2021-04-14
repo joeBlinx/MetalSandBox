@@ -19,7 +19,6 @@ class Renderer : NSObject, MTKViewDelegate{
     private let preStencilState: MTLDepthStencilState
     private let postStencilState: MTLDepthStencilState
     
-    private let texture:Texture
     private let sampler:MTLSamplerState!
 
     private let cube: Entity
@@ -41,17 +40,9 @@ class Renderer : NSObject, MTKViewDelegate{
         plane = Entity(device: device, model: "plane")
         plane.scale(vec3(2))
         cube.setMaterial(useTexture: 1)
-        texture = Texture(device: device, "cat.jpg")
+        cube.setTexture(device: device, textureName: "cat.jpg")
         
-        let descriptor = MTLSamplerDescriptor()
-        descriptor.minFilter = .linear
-        descriptor.magFilter = .linear
-        descriptor.label = "linear"
-        descriptor.rAddressMode = .repeat
-        descriptor.sAddressMode = .repeat
-        descriptor.tAddressMode = .repeat
-        sampler = device.makeSamplerState(descriptor: descriptor)
-        
+        sampler = createLinearSampler(device: device)
         
         depthStencilState = createBasicDepthStencilState(device)
         preStencilState = createDepthStencilStateForCreatingCanvas(device)
@@ -70,7 +61,6 @@ class Renderer : NSObject, MTKViewDelegate{
         
         render_encoder.setDepthStencilState(self.depthStencilState)
         render_encoder.setVertexBytes(self.camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
-        render_encoder.setFragmentTexture(texture.texture, index: 0)
         render_encoder.setFragmentSamplerState(sampler, index: 0)
        
         
