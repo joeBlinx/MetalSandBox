@@ -45,6 +45,7 @@ class Renderer : NSObject, MTKViewDelegate{
   
     func draw(in view:MTKView){
         scene.update()
+        camera.update()
         guard let command_buffer = command_queue.makeCommandBuffer() else {return }
         guard let renderpass_descriptor = view.currentRenderPassDescriptor  else {return}
         Renderer.setRenderPassDescriptor(renderpass_descriptor)

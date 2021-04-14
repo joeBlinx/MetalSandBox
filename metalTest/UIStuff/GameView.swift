@@ -31,4 +31,13 @@ class GameView: MTKView{
         delegate = renderer
     	
     }
+    
+    override var acceptsFirstResponder: Bool {return true}
+    
+    override func keyUp(with event: NSEvent) {
+        Keyboard.setKeyPressed(event.keyCode, isOn: false)
+    }
+    override func keyDown(with event: NSEvent) {
+        Keyboard.setKeyPressed(event.keyCode, isOn: true)
+    }
 }

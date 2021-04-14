@@ -25,6 +25,8 @@
 		81CC9175262706BA00CD2858 /* scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC9174262706BA00CD2858 /* scene.swift */; };
 		81CC917A26270B9F00CD2858 /* cuteCat.png in Resources */ = {isa = PBXBuildFile; fileRef = 81CC917926270B9F00CD2858 /* cuteCat.png */; };
 		81CC917D26270C4200CD2858 /* realCat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 81CC917C26270C4200CD2858 /* realCat.jpg */; };
+		81CC918026272D0900CD2858 /* keycode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC917F26272D0900CD2858 /* keycode.swift */; };
+		81CC918426272E8000CD2858 /* keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC918326272E8000CD2858 /* keyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		81CC9174262706BA00CD2858 /* scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scene.swift; sourceTree = "<group>"; };
 		81CC917926270B9F00CD2858 /* cuteCat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cuteCat.png; sourceTree = "<group>"; };
 		81CC917C26270C4200CD2858 /* realCat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = realCat.jpg; sourceTree = "<group>"; };
+		81CC917F26272D0900CD2858 /* keycode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keycode.swift; sourceTree = "<group>"; };
+		81CC918326272E8000CD2858 /* keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 		810957AE262304EA003388F3 /* metalTest */ = {
 			isa = PBXGroup;
 			children = (
+				81CC918226272E5400CD2858 /* Input */,
 				81CC91692626C11300CD2858 /* Assets */,
 				81CC91492625FC6400CD2858 /* OtherFiles */,
 				8181F577262493AF0023DA74 /* Entities */,
@@ -146,6 +151,15 @@
 				81CC916E2626D0AD00CD2858 /* cat.jpg */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		81CC918226272E5400CD2858 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				81CC917F26272D0900CD2858 /* keycode.swift */,
+				81CC918326272E8000CD2858 /* keyboard.swift */,
+			);
+			path = Input;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,12 +244,14 @@
 				8181F58B2624B2C90023DA74 /* camera.swift in Sources */,
 				81CC916C2626CBC500CD2858 /* texture.swift in Sources */,
 				8181F579262493DB0023DA74 /* model.swift in Sources */,
+				81CC918026272D0900CD2858 /* keycode.swift in Sources */,
 				81CC91722627036C00CD2858 /* sampler.swift in Sources */,
 				813A4DF826230AE500EDED21 /* renderer.swift in Sources */,
 				81CC91662626178200CD2858 /* GameView.swift in Sources */,
 				8181F57E262498F60023DA74 /* vertexBuffer.swift in Sources */,
 				81CC91632625FF5500CD2858 /* depthStencilStateCreation.swift in Sources */,
 				81CC9175262706BA00CD2858 /* scene.swift in Sources */,
+				81CC918426272E8000CD2858 /* keyboard.swift in Sources */,
 				810957B0262304EA003388F3 /* AppDelegate.swift in Sources */,
 				8181F5862624A1C10023DA74 /* entities.swift in Sources */,
 				813A4E112623213000EDED21 /* shaders.metal in Sources */,
