@@ -10,7 +10,7 @@
 		810957B0262304EA003388F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810957AF262304EA003388F3 /* AppDelegate.swift */; };
 		810957B4262304EC003388F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 810957B3262304EC003388F3 /* Assets.xcassets */; };
 		810957B7262304ED003388F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 810957B5262304ED003388F3 /* Main.storyboard */; };
-		813A4DF826230AE500EDED21 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813A4DF726230AE500EDED21 /* Renderer.swift */; };
+		813A4DF826230AE500EDED21 /* renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813A4DF726230AE500EDED21 /* renderer.swift */; };
 		813A4E112623213000EDED21 /* shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 813A4E102623213000EDED21 /* shaders.metal */; };
 		813A4E21262449D600EDED21 /* SGLMath in Frameworks */ = {isa = PBXBuildFile; productRef = 813A4E20262449D600EDED21 /* SGLMath */; };
 		8181F579262493DB0023DA74 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181F578262493DB0023DA74 /* model.swift */; };
@@ -19,10 +19,12 @@
 		8181F58B2624B2C90023DA74 /* camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181F58A2624B2C90023DA74 /* camera.swift */; };
 		81CC91632625FF5500CD2858 /* depthStencilStateCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */; };
 		81CC91662626178200CD2858 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC91652626178200CD2858 /* GameView.swift */; };
-		81CC916C2626CBC500CD2858 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC916B2626CBC500CD2858 /* Texture.swift */; };
+		81CC916C2626CBC500CD2858 /* texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC916B2626CBC500CD2858 /* texture.swift */; };
 		81CC916F2626D0AD00CD2858 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 81CC916E2626D0AD00CD2858 /* cat.jpg */; };
 		81CC91722627036C00CD2858 /* sampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC91712627036C00CD2858 /* sampler.swift */; };
 		81CC9175262706BA00CD2858 /* scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC9174262706BA00CD2858 /* scene.swift */; };
+		81CC917A26270B9F00CD2858 /* cuteCat.png in Resources */ = {isa = PBXBuildFile; fileRef = 81CC917926270B9F00CD2858 /* cuteCat.png */; };
+		81CC917D26270C4200CD2858 /* realCat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 81CC917C26270C4200CD2858 /* realCat.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +34,7 @@
 		810957B6262304ED003388F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		810957B8262304ED003388F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		810957B9262304ED003388F3 /* metalTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = metalTest.entitlements; sourceTree = "<group>"; };
-		813A4DF726230AE500EDED21 /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		813A4DF726230AE500EDED21 /* renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = renderer.swift; sourceTree = "<group>"; };
 		813A4E0D2623204E00EDED21 /* metalTest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "metalTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		813A4E0E2623206D00EDED21 /* shader_definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shader_definitions.h; sourceTree = "<group>"; };
 		813A4E102623213000EDED21 /* shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = shaders.metal; sourceTree = "<group>"; };
@@ -42,10 +44,12 @@
 		8181F58A2624B2C90023DA74 /* camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = camera.swift; sourceTree = "<group>"; };
 		81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = depthStencilStateCreation.swift; sourceTree = "<group>"; };
 		81CC91652626178200CD2858 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		81CC916B2626CBC500CD2858 /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		81CC916B2626CBC500CD2858 /* texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = texture.swift; sourceTree = "<group>"; };
 		81CC916E2626D0AD00CD2858 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
 		81CC91712627036C00CD2858 /* sampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampler.swift; sourceTree = "<group>"; };
 		81CC9174262706BA00CD2858 /* scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scene.swift; sourceTree = "<group>"; };
+		81CC917926270B9F00CD2858 /* cuteCat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cuteCat.png; sourceTree = "<group>"; };
+		81CC917C26270C4200CD2858 /* realCat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = realCat.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +88,9 @@
 				8181F577262493AF0023DA74 /* Entities */,
 				813A4E1826243D1100EDED21 /* UIStuff */,
 				813A4E0F2623211700EDED21 /* shaders */,
-				813A4DF726230AE500EDED21 /* Renderer.swift */,
+				813A4DF726230AE500EDED21 /* renderer.swift */,
 				81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */,
-				81CC916B2626CBC500CD2858 /* Texture.swift */,
+				81CC916B2626CBC500CD2858 /* texture.swift */,
 				81CC91712627036C00CD2858 /* sampler.swift */,
 				81CC9174262706BA00CD2858 /* scene.swift */,
 			);
@@ -137,6 +141,8 @@
 		81CC91692626C11300CD2858 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				81CC917C26270C4200CD2858 /* realCat.jpg */,
+				81CC917926270B9F00CD2858 /* cuteCat.png */,
 				81CC916E2626D0AD00CD2858 /* cat.jpg */,
 			);
 			path = Assets;
@@ -209,6 +215,8 @@
 				81CC916F2626D0AD00CD2858 /* cat.jpg in Resources */,
 				810957B4262304EC003388F3 /* Assets.xcassets in Resources */,
 				810957B7262304ED003388F3 /* Main.storyboard in Resources */,
+				81CC917A26270B9F00CD2858 /* cuteCat.png in Resources */,
+				81CC917D26270C4200CD2858 /* realCat.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,10 +228,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8181F58B2624B2C90023DA74 /* camera.swift in Sources */,
-				81CC916C2626CBC500CD2858 /* Texture.swift in Sources */,
+				81CC916C2626CBC500CD2858 /* texture.swift in Sources */,
 				8181F579262493DB0023DA74 /* model.swift in Sources */,
 				81CC91722627036C00CD2858 /* sampler.swift in Sources */,
-				813A4DF826230AE500EDED21 /* Renderer.swift in Sources */,
+				813A4DF826230AE500EDED21 /* renderer.swift in Sources */,
 				81CC91662626178200CD2858 /* GameView.swift in Sources */,
 				8181F57E262498F60023DA74 /* vertexBuffer.swift in Sources */,
 				81CC91632625FF5500CD2858 /* depthStencilStateCreation.swift in Sources */,

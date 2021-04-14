@@ -15,6 +15,7 @@ func createLinearSampler(device: MTLDevice) -> MTLSamplerState{
     descriptor.rAddressMode = .repeat
     descriptor.sAddressMode = .repeat
     descriptor.tAddressMode = .repeat
+    descriptor.borderColor = .transparentBlack
     return device.makeSamplerState(descriptor: descriptor)!
     
 }
