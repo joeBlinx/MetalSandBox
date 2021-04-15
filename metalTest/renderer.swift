@@ -15,15 +15,15 @@ class Renderer : NSObject, MTKViewDelegate{
     private var device: MTLDevice
     private var command_queue: MTLCommandQueue
     private let pipelineState: MTLRenderPipelineState
-    private let skyboxPipelineState:MTLRenderPipelineState
+    private let skyboxPipelineState: MTLRenderPipelineState
     
-    private let depthStencilState:MTLDepthStencilState
+    private let depthStencilState: MTLDepthStencilState
     private let preStencilState: MTLDepthStencilState
     private let postStencilState: MTLDepthStencilState
     private let skyBoxDepthState: MTLDepthStencilState
     
     private let sampler:MTLSamplerState!
-    private let camera = Camera.init()
+    private let camera:Camera
     
     private let scene:Scene
     
@@ -39,7 +39,8 @@ class Renderer : NSObject, MTKViewDelegate{
             return nil
         }
         scene = Scene(device: device)
-     
+        let viewSize = mtk_view.drawableSize
+        camera = Camera(viewWidth: Float(viewSize.width), viewHeight: Float(viewSize.height))
         sampler = createLinearSampler(device: device)
         
         depthStencilState = createBasicDepthStencilState(device)
@@ -87,7 +88,9 @@ class Renderer : NSObject, MTKViewDelegate{
         command_buffer.commit()
         
     }
-    
+    func viewResize(width: Float, height: Float){
+        camera.viewResize(viewWidth: width, viewHeight: height)
+    }
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
     
     }

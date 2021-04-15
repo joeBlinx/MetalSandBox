@@ -40,4 +40,10 @@ class GameView: MTKView{
     override func keyDown(with event: NSEvent) {
         Keyboard.setKeyPressed(event.keyCode, isOn: true)
     }
+    
+    override func viewDidEndLiveResize() {
+        super.viewDidEndLiveResize()
+        let size = drawableSize
+        renderer.viewResize(width: Float(size.width), height: Float(size.height))
+    }
 }

@@ -13,12 +13,13 @@ class Camera{
     private var eye = vec3(-1, 1.5, -5)
     private var center = vec3(0, 0.5, 0)
     private let up = vec3(0, 1, 0)
-    init(){
-        
+    init(viewWidth: Float, viewHeight: Float){
         view = SGLMath.lookAt(eye, center, up)
-        proj = SGLMath.perspective(70.0, 16.0/9.0, 0.1, 100.0)
+        proj = SGLMath.perspective(70.0, viewWidth/viewHeight, 0.1, 100.0)
     }
-    
+    func viewResize(viewWidth: Float, viewHeight: Float){
+        proj = SGLMath.perspective(70.0, viewWidth/viewHeight, 0.1, 100.0)
+    }
     func getVP() -> mat4{
         proj * view
     }

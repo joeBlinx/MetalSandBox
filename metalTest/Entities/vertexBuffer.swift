@@ -12,9 +12,9 @@ struct Indices{
     let count: Int
 }
 class VertexBuffer{
+    
     let buffer : MTLBuffer
     let indices: Indices
-    
     
     init(_ device: MTLDevice, model: ([Vertex], [UInt32])) {
         let (vertices, indices) = model

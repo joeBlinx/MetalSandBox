@@ -19,7 +19,7 @@ class Image{
         if let url = Bundle.main.url(forResource: name, withExtension: ext) {
             
             var (x, y, channels) : (Int32, Int32, Int32) = (0, 0, 0);
-            pixels = stbi_load(url.path, &x, &y, &channels, 4)!
+            pixels = stbi_load(url.path, &x, &y, &channels, 4)! // 4 because we want rgba
             
             width = Int(x)
             height = Int(y)
