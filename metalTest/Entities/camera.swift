@@ -22,6 +22,12 @@ class Camera{
     func getVP() -> mat4{
         proj * view
     }
+    func getVPSkyBox() -> mat4 {
+        proj*mat4(mat3(view))
+    }
+    func getView() -> mat4{
+        view
+    }
     func update(){
         let delta: Float = 0.1
         if Keyboard.isKeyPressed(.downArrow) {

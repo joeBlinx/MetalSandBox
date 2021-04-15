@@ -47,3 +47,4 @@ func createBasicDepthStencilState(_ device: MTLDevice) -> MTLDepthStencilState{
     depthDescriptor.depthCompareFunction = MTLCompareFunction.lessEqual
     return device.makeDepthStencilState(descriptor: depthDescriptor)!
 }
+

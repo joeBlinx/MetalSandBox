@@ -15,6 +15,7 @@ class Renderer : NSObject, MTKViewDelegate{
     private var device: MTLDevice
     private var command_queue: MTLCommandQueue
     private let pipelineState: MTLRenderPipelineState
+    private let skyboxPipelineState:MTLRenderPipelineState
     private let depthStencilState:MTLDepthStencilState
     private let preStencilState: MTLDepthStencilState
     private let postStencilState: MTLDepthStencilState
@@ -24,11 +25,13 @@ class Renderer : NSObject, MTKViewDelegate{
     
     private let scene:Scene
     
+    
     init?(_ mtk_view:MTKView){
         self.device = mtk_view.device!
         self.command_queue = device.makeCommandQueue()!
         do{
             pipelineState = try Renderer.build_render_pipeline_with(device: device, metalKitView: mtk_view)
+            skyboxPipelineState = try Renderer.buildRenderPipelineSkyBox(device: device, metalKitView: mtk_view)
         }catch{
             print("Unable to create pipeline state")
             return nil
@@ -51,21 +54,29 @@ class Renderer : NSObject, MTKViewDelegate{
         Renderer.setRenderPassDescriptor(renderpass_descriptor)
         guard let render_encoder = command_buffer.makeRenderCommandEncoder(descriptor: renderpass_descriptor) else {return }
         
-        render_encoder.setRenderPipelineState(pipelineState)
+        
+        render_encoder.setDepthStencilState(preStencilState)
+        render_encoder.setRenderPipelineState(skyboxPipelineState)
+        render_encoder.setVertexBytes(self.camera.getVPSkyBox().elements, length: MemoryLayout<mat4>.size, index: 1)
+        render_encoder.setFragmentSamplerState(sampler, index: 0)
+        scene.drawSkybox(encoder: render_encoder)
+        
+        /*render_encoder.setRenderPipelineState(pipelineState)
         
         render_encoder.setDepthStencilState(self.depthStencilState)
         render_encoder.setVertexBytes(self.camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
         render_encoder.setFragmentSamplerState(sampler, index: 0)
        
-        
+       
         scene.drawCube(encoder: render_encoder)
+        
         render_encoder.setDepthStencilState(preStencilState)
 
         scene.drawPlane(encoder: render_encoder)
         
         render_encoder.setDepthStencilState(postStencilState)
     
-        scene.drawReflectionCube(encoder: render_encoder)
+        scene.drawReflectionCube(encoder: render_encoder)*/
         render_encoder.endEncoding()
         
         command_buffer.present(view.currentDrawable!)
@@ -86,6 +97,18 @@ class Renderer : NSObject, MTKViewDelegate{
         pipelineDescriptor.stencilAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
         
         
+        return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+    }
+    
+    class func buildRenderPipelineSkyBox(device: MTLDevice, metalKitView: MTKView) throws -> MTLRenderPipelineState{
+        let pipelineDescriptor = MTLRenderPipelineDescriptor()
+        let library = device.makeDefaultLibrary()
+        pipelineDescriptor.vertexFunction = library?.makeFunction(name: "skyboxVertexShader")
+        pipelineDescriptor.fragmentFunction = library?.makeFunction(name: "skyboxFragmentShader")
+        pipelineDescriptor.colorAttachments[0].pixelFormat = metalKitView.colorPixelFormat
+        pipelineDescriptor.depthAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
+        pipelineDescriptor.stencilAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
+       
         return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
     }
     

@@ -46,3 +46,25 @@ fragment float4 fragmentShader(VertexOut interpolated [[ stage_in ]],
 }
 
 
+struct VertexSkyBoxOut{
+    float4 pos [[position]];
+    float3 texCoord;
+};
+vertex VertexSkyBoxOut skyboxVertexShader(const device Vertex *vertexArray [[buffer(0)]],
+                              const device CameraBuffer &camera [[buffer(1)]],
+                              unsigned int vid [[vertex_id]]){
+    
+    auto vertex_in = vertexArray[vid];
+    
+    return VertexSkyBoxOut{camera.vp * float4(vertex_in.pos, 1),
+        vertex_in.pos.xyz};
+    
+}
+
+
+fragment float4 skyboxFragmentShader(VertexSkyBoxOut interpolated [[ stage_in ]],
+                                     sampler sampler2d[[ sampler(0) ]],
+                                     texturecube<float> texture [[ texture(0) ]]){
+    return texture.sample(sampler2d, interpolated.texCoord);
+}
+

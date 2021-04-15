@@ -13,6 +13,7 @@
 		813A4DF826230AE500EDED21 /* renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813A4DF726230AE500EDED21 /* renderer.swift */; };
 		813A4E112623213000EDED21 /* shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 813A4E102623213000EDED21 /* shaders.metal */; };
 		813A4E21262449D600EDED21 /* SGLMath in Frameworks */ = {isa = PBXBuildFile; productRef = 813A4E20262449D600EDED21 /* SGLMath */; };
+		8156EA662628579100EF2050 /* stb_image in Frameworks */ = {isa = PBXBuildFile; productRef = 8156EA652628579100EF2050 /* stb_image */; };
 		8181F579262493DB0023DA74 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181F578262493DB0023DA74 /* model.swift */; };
 		8181F57E262498F60023DA74 /* vertexBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181F57D262498F60023DA74 /* vertexBuffer.swift */; };
 		8181F5862624A1C10023DA74 /* entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8181F5852624A1C10023DA74 /* entities.swift */; };
@@ -27,6 +28,9 @@
 		81CC917D26270C4200CD2858 /* realCat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 81CC917C26270C4200CD2858 /* realCat.jpg */; };
 		81CC918026272D0900CD2858 /* keycode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC917F26272D0900CD2858 /* keycode.swift */; };
 		81CC918426272E8000CD2858 /* keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC918326272E8000CD2858 /* keyboard.swift */; };
+		81CC91882627422900CD2858 /* skyboxForest.png in Resources */ = {isa = PBXBuildFile; fileRef = 81CC91872627422900CD2858 /* skyboxForest.png */; };
+		81CC918B2627476C00CD2858 /* skybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC918A2627476C00CD2858 /* skybox.swift */; };
+		81CF6D5726285A7E00CC6176 /* loadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D5626285A7E00CC6176 /* loadImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,9 @@
 		81CC917C26270C4200CD2858 /* realCat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = realCat.jpg; sourceTree = "<group>"; };
 		81CC917F26272D0900CD2858 /* keycode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keycode.swift; sourceTree = "<group>"; };
 		81CC918326272E8000CD2858 /* keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboard.swift; sourceTree = "<group>"; };
+		81CC91872627422900CD2858 /* skyboxForest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skyboxForest.png; sourceTree = "<group>"; };
+		81CC918A2627476C00CD2858 /* skybox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skybox.swift; sourceTree = "<group>"; };
+		81CF6D5626285A7E00CC6176 /* loadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8156EA662628579100EF2050 /* stb_image in Frameworks */,
 				813A4E21262449D600EDED21 /* SGLMath in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +95,7 @@
 		810957AE262304EA003388F3 /* metalTest */ = {
 			isa = PBXGroup;
 			children = (
+				81CF6D5526285A6E00CC6176 /* Utils */,
 				81CC918226272E5400CD2858 /* Input */,
 				81CC91692626C11300CD2858 /* Assets */,
 				81CC91492625FC6400CD2858 /* OtherFiles */,
@@ -128,6 +137,7 @@
 				8181F57D262498F60023DA74 /* vertexBuffer.swift */,
 				8181F5852624A1C10023DA74 /* entities.swift */,
 				8181F58A2624B2C90023DA74 /* camera.swift */,
+				81CC918A2627476C00CD2858 /* skybox.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -146,6 +156,7 @@
 		81CC91692626C11300CD2858 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				81CC91872627422900CD2858 /* skyboxForest.png */,
 				81CC917C26270C4200CD2858 /* realCat.jpg */,
 				81CC917926270B9F00CD2858 /* cuteCat.png */,
 				81CC916E2626D0AD00CD2858 /* cat.jpg */,
@@ -160,6 +171,14 @@
 				81CC918326272E8000CD2858 /* keyboard.swift */,
 			);
 			path = Input;
+			sourceTree = "<group>";
+		};
+		81CF6D5526285A6E00CC6176 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				81CF6D5626285A7E00CC6176 /* loadImage.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +199,7 @@
 			name = metalTest;
 			packageProductDependencies = (
 				813A4E20262449D600EDED21 /* SGLMath */,
+				8156EA652628579100EF2050 /* stb_image */,
 			);
 			productName = metalTest;
 			productReference = 810957AC262304EA003388F3 /* metalTest.app */;
@@ -211,6 +231,7 @@
 			mainGroup = 810957A3262304EA003388F3;
 			packageReferences = (
 				813A4E1F262449D600EDED21 /* XCRemoteSwiftPackageReference "Math" */,
+				8156EA642628579100EF2050 /* XCRemoteSwiftPackageReference "Cstb" */,
 			);
 			productRefGroup = 810957AD262304EA003388F3 /* Products */;
 			projectDirPath = "";
@@ -230,6 +251,7 @@
 				810957B4262304EC003388F3 /* Assets.xcassets in Resources */,
 				810957B7262304ED003388F3 /* Main.storyboard in Resources */,
 				81CC917A26270B9F00CD2858 /* cuteCat.png in Resources */,
+				81CC91882627422900CD2858 /* skyboxForest.png in Resources */,
 				81CC917D26270C4200CD2858 /* realCat.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8181F58B2624B2C90023DA74 /* camera.swift in Sources */,
+				81CC918B2627476C00CD2858 /* skybox.swift in Sources */,
 				81CC916C2626CBC500CD2858 /* texture.swift in Sources */,
 				8181F579262493DB0023DA74 /* model.swift in Sources */,
 				81CC918026272D0900CD2858 /* keycode.swift in Sources */,
@@ -253,6 +276,7 @@
 				81CC9175262706BA00CD2858 /* scene.swift in Sources */,
 				81CC918426272E8000CD2858 /* keyboard.swift in Sources */,
 				810957B0262304EA003388F3 /* AppDelegate.swift in Sources */,
+				81CF6D5726285A7E00CC6176 /* loadImage.swift in Sources */,
 				8181F5862624A1C10023DA74 /* entities.swift in Sources */,
 				813A4E112623213000EDED21 /* shaders.metal in Sources */,
 			);
@@ -466,6 +490,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		8156EA642628579100EF2050 /* XCRemoteSwiftPackageReference "Cstb" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/troughton/Cstb.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -473,6 +505,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 813A4E1F262449D600EDED21 /* XCRemoteSwiftPackageReference "Math" */;
 			productName = SGLMath;
+		};
+		8156EA652628579100EF2050 /* stb_image */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8156EA642628579100EF2050 /* XCRemoteSwiftPackageReference "Cstb" */;
+			productName = stb_image;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -12,7 +12,7 @@ class Scene{
     private let cube:Entity
     private let reflectionCube: Entity
     private let plane: Entity
-    
+    private let skybox: SkyBox
     
     init(device: MTLDevice){
         cube = Entity(device: device, model: "cube")
@@ -27,6 +27,8 @@ class Scene{
         
         plane = Entity(device: device, model: "plane")
         plane.scale(vec3(2))
+        
+        skybox = SkyBox(device: device)
     }
 }
 
@@ -39,6 +41,9 @@ extension Scene{
     }
     func drawPlane(encoder: MTLRenderCommandEncoder){
         plane.draw(encoder: encoder)
+    }
+    func drawSkybox(encoder: MTLRenderCommandEncoder){
+        skybox.draw(encoder: encoder)
     }
     func update(){
         cube.update()

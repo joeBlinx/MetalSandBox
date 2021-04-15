@@ -8,7 +8,7 @@ import SGLMath
 import MetalKit
 
 class Entity{
-    static let entitiesModel:[String: ([Vertex], [UInt32])] =
+    static let model:[String: ([Vertex], [UInt32])] =
     [
         "cube" : cubeVertices(),
         "plane" : planeVertices()
@@ -19,7 +19,7 @@ class Entity{
     private var texture: Texture?
     
     init(device: MTLDevice, model: String){
-        buffer = VertexBuffer.init(device, model: Entity.entitiesModel[model]!)
+        buffer = VertexBuffer.init(device, model: Entity.model[model]!)
     }
 }
 

@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Cstb",
+        "repositoryURL": "https://github.com/troughton/Cstb.git",
+        "state": {
+          "branch": null,
+          "revision": "08d0f1310c826f616d4e2b63f5029b45fa31ea17",
+          "version": "1.0.3"
+        }
+      },
+      {
         "package": "SGLMath",
         "repositoryURL": "https://github.com/SwiftGL/Math.git",
         "state": {

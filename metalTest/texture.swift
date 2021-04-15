@@ -7,6 +7,7 @@
 
 import MetalKit
 import Metal
+import stb_image
 class Texture {
     var texture: MTLTexture!
     
@@ -32,23 +33,19 @@ class TextureLoader {
     
     public func loadTextureFromBundle(device: MTLDevice)->MTLTexture{
         var result: MTLTexture!
-        let name = String(self._textureName.split(separator: ".")[0])
-        let textureExtension = String(self._textureName.split(separator: ".")[1])
-        if let url = Bundle.main.url(forResource: name, withExtension: textureExtension) {
-            let textureLoader = MTKTextureLoader(device: device)
+        if let image = Image(filename: _textureName){
             
-            let options: [MTKTextureLoader.Option : MTKTextureLoader.Origin] = [MTKTextureLoader.Option.origin : _origin]
+            let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rgba8Unorm, width: image.width, height: image.height, mipmapped: false)
+            result = device.makeTexture(descriptor: textureDescriptor)
+            result.replace(region: MTLRegionMake2D(0, 0, image.width, image.height), mipmapLevel: 0, withBytes: image.pixels, bytesPerRow: image.width*image.nbChannels)
             
-            do{
-                result = try textureLoader.newTexture(URL: url, options: options)
-                result.label = _textureName
-            }catch let error as NSError {
-                print("ERROR::CREATING::TEXTURE::__\(_textureName!)__::\(error)")
-            }
+            
         }else {
             print("ERROR::CREATING::TEXTURE::__\(_textureName!) does not exist")
         }
         
+      
+       
         return result
     }
 }
