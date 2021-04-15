@@ -16,9 +16,11 @@ class Renderer : NSObject, MTKViewDelegate{
     private var command_queue: MTLCommandQueue
     private let pipelineState: MTLRenderPipelineState
     private let skyboxPipelineState:MTLRenderPipelineState
+    
     private let depthStencilState:MTLDepthStencilState
     private let preStencilState: MTLDepthStencilState
     private let postStencilState: MTLDepthStencilState
+    private let skyBoxDepthState: MTLDepthStencilState
     
     private let sampler:MTLSamplerState!
     private let camera = Camera.init()
@@ -43,6 +45,7 @@ class Renderer : NSObject, MTKViewDelegate{
         depthStencilState = createBasicDepthStencilState(device)
         preStencilState = createDepthStencilStateForCreatingCanvas(device)
         postStencilState = createDepthStencilStateForUsingCanvas(device)
+        skyBoxDepthState = createDepthStencilForSkyBox(device)
       
     }
   
@@ -55,13 +58,13 @@ class Renderer : NSObject, MTKViewDelegate{
         guard let render_encoder = command_buffer.makeRenderCommandEncoder(descriptor: renderpass_descriptor) else {return }
         
         
-        render_encoder.setDepthStencilState(preStencilState)
+        render_encoder.setDepthStencilState(skyBoxDepthState)
         render_encoder.setRenderPipelineState(skyboxPipelineState)
         render_encoder.setVertexBytes(self.camera.getVPSkyBox().elements, length: MemoryLayout<mat4>.size, index: 1)
         render_encoder.setFragmentSamplerState(sampler, index: 0)
         scene.drawSkybox(encoder: render_encoder)
         
-        /*render_encoder.setRenderPipelineState(pipelineState)
+        render_encoder.setRenderPipelineState(pipelineState)
         
         render_encoder.setDepthStencilState(self.depthStencilState)
         render_encoder.setVertexBytes(self.camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
@@ -76,7 +79,7 @@ class Renderer : NSObject, MTKViewDelegate{
         
         render_encoder.setDepthStencilState(postStencilState)
     
-        scene.drawReflectionCube(encoder: render_encoder)*/
+        scene.drawReflectionCube(encoder: render_encoder)
         render_encoder.endEncoding()
         
         command_buffer.present(view.currentDrawable!)

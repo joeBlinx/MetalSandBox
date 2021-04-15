@@ -6,7 +6,12 @@
 //
 import Metal
 
-
+func createDepthStencilForSkyBox(_ device: MTLDevice) -> MTLDepthStencilState{
+    let depthDescriptor = MTLDepthStencilDescriptor()
+    depthDescriptor.isDepthWriteEnabled = false
+    depthDescriptor.depthCompareFunction = MTLCompareFunction.lessEqual
+    return device.makeDepthStencilState(descriptor: depthDescriptor)!
+}
 func createDepthStencilStateForUsingCanvas(_ device: MTLDevice) -> MTLDepthStencilState{
     let stencilDescriptor = MTLStencilDescriptor()
     stencilDescriptor.stencilCompareFunction = MTLCompareFunction.less
