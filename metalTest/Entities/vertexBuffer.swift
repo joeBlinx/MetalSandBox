@@ -16,9 +16,9 @@ class VertexBuffer{
     let buffer : MTLBuffer
     let indices: Indices
     
-    init(_ device: MTLDevice, model: ([Vertex], [UInt32])) {
+    init<T>(_ device: MTLDevice, model: ([T], [UInt32])) {
         let (vertices, indices) = model
-        self.indices = Indices(offset: vertices.count * MemoryLayout<Vertex>.stride, count: indices.count)
+        self.indices = Indices(offset: vertices.count * MemoryLayout<T>.stride, count: indices.count)
         let indicesBytesSize = indices.count * MemoryLayout<UInt32>.size
        
         self.buffer = device.makeBuffer(length: self.indices.offset + indicesBytesSize, options: [])!

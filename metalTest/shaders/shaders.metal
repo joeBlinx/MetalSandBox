@@ -60,7 +60,7 @@ struct VertexSkyBoxOut{
     float4 pos [[position]];
     float3 texCoord;
 };
-vertex VertexSkyBoxOut skyboxVertexShader(const device Vertex *vertexArray [[buffer(0)]],
+vertex VertexSkyBoxOut skyboxVertexShader(const device VertexSkyBox *vertexArray [[buffer(0)]],
                               const device CameraBuffer &camera [[buffer(1)]],
                               unsigned int vid [[vertex_id]]){
     

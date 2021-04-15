@@ -7,7 +7,7 @@
 import Metal
 import AppKit
 
-struct Slice{
+private struct Slice{
     struct pair{
         let row: Int;
         let column: Int;
@@ -33,7 +33,7 @@ struct SkyBox{
     
     init(device: MTLDevice){
     
-        vertexBuffer = VertexBuffer(device, model: Entity.model["cube"]!)
+        vertexBuffer = VertexBuffer(device, model: cubeSkyBoxVertices())
         if let image = Image(filename: "skyboxForest.png"){
             
             let sizeImageCube = image.height/3
@@ -56,7 +56,7 @@ extension SkyBox{
         encoder.drawIndexedPrimitives(type: .triangle, indexCount:indices.count, indexType: .uint32, indexBuffer: buffer, indexBufferOffset: indices.offset)
     }
 }
-func getSeparateData(image: Image, slice: Slice.pair, sizeImageCube: Int) -> Data {
+private func getSeparateData(image: Image, slice: Slice.pair, sizeImageCube: Int) -> Data {
     let newData = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: sizeImageCube * sizeImageCube * 4)
     for i in 0...sizeImageCube - 1 {
         let beginRow = 4*(sizeImageCube*slice.row + i)

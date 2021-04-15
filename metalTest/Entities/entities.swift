@@ -11,7 +11,7 @@ class Entity{
     static let model:[String: ([Vertex], [UInt32])] =
     [
         "cube" : cubeVertices(),
-        "plane" : planeVertices()
+        "plane" : planeVertices(),
     ]
     private var model: mat4 = mat4(1.0)
     private let buffer: VertexBuffer

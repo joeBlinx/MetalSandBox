@@ -16,6 +16,11 @@ struct Vertex{
 };
 
 
+struct VertexSkyBox{
+    vector_float3 pos;
+};
+
+
 struct UniformBuffer{
     matrix_float4x4 model;
 };
