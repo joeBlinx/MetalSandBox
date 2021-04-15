@@ -12,6 +12,7 @@ struct VertexOut {
     float4 color;
     float4 pos [[position]];
     float2 texCoord;
+    float3 positionWorldSpace;
 };
 
 vertex VertexOut vertexShader(const device Vertex *vertexArray [[buffer(0)]],
@@ -23,14 +24,20 @@ vertex VertexOut vertexShader(const device Vertex *vertexArray [[buffer(0)]],
     
     return VertexOut{vertex_in.color,
         camera.vp * uni.model * float4(vertex_in.pos, 1),
-        vertex_in.texCoord};
+        vertex_in.texCoord,
+        float3(uni.model * float4(vertex_in.pos, 1))
+    };
     
 }
-
+struct CamPos{
+    vector_float3 campos;
+};
 fragment float4 fragmentShader(VertexOut interpolated [[ stage_in ]],
                                sampler sampler2d[[ sampler(0) ]],
                                texture2d<float> texture [[ texture(0) ]],
-                               const device MaterialBuffer& material [[ buffer(0) ]]){
+                               const device MaterialBuffer& material [[ buffer(0) ]],
+                               const device CamPos& cameraPos [[ buffer (1) ]],
+                               texturecube<float> textureCube [[ texture(1) ]]){
     
     float4 color;
     if(material.useTexture){
@@ -40,7 +47,10 @@ fragment float4 fragmentShader(VertexOut interpolated [[ stage_in ]],
         }
         color = texture.sample(sampler2d, texCoord);
     }else{
-        color = interpolated.color;
+        float3 normal(0, 1, 0);
+        float3 I = normalize(interpolated.positionWorldSpace - cameraPos.campos);
+        float3 R = reflect(I, normalize(normal));
+        color = textureCube.sample(sampler2d, R);
     }
     return color;
 }

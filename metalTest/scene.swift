@@ -12,7 +12,7 @@ class Scene{
     private let cube:Entity
     private let reflectionCube: Entity
     private let plane: Entity
-    private let skybox: SkyBox
+    let skybox: SkyBox
     
     init(device: MTLDevice){
         cube = Entity(device: device, model: "cube")

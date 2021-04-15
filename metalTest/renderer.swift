@@ -68,8 +68,9 @@ class Renderer : NSObject, MTKViewDelegate{
         
         render_encoder.setDepthStencilState(self.depthStencilState)
         render_encoder.setVertexBytes(self.camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
+        render_encoder.setFragmentTexture(scene.skybox.texture, index: 1)
         render_encoder.setFragmentSamplerState(sampler, index: 0)
-       
+        render_encoder.setFragmentBytes(camera.getPos().elements, length: MemoryLayout<vec4>.size, index: 1)
        
         scene.drawCube(encoder: render_encoder)
         

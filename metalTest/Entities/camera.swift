@@ -28,6 +28,9 @@ class Camera{
     func getView() -> mat4{
         view
     }
+    func getPos() -> vec3{
+        eye
+    }
     func update(){
         let delta: Float = 0.1
         if Keyboard.isKeyPressed(.downArrow) {
