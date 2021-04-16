@@ -9,21 +9,22 @@ import Metal
 import SGLMath
 
 class Scene{
-    private let cube:Entity
     private let plane: Entity
     
+    private var entities:[Entity] = []
     let skybox: SkyBox
     
     private let mesh: ModelMesh
     
     init(device: MTLDevice){
-        cube = Entity(device: device, model: "cube")
+        let cube = Entity(device: device, model: "cube")
         cube.setTexture(device: device, textureName: "realCat.jpg")
         cube.setMaterial(useTexture: 1)
         cube.move(vec3(0, 1.1, 0))
-        
+        entities.append(cube)
+      
         plane = Entity(device: device, model: "plane")
-        plane.scale(vec3(2))
+        plane.scale(vec3(3))
         
         skybox = SkyBox(device: device, singleImage: "skyboxForest.png")
         mesh = ModelMesh(device: device, modelName: "bunny")
@@ -31,12 +32,17 @@ class Scene{
 }
 
 extension Scene{
-    func drawCube(encoder: MTLRenderCommandEncoder){
-        cube.draw(encoder: encoder)
+    func draw(encoder: MTLRenderCommandEncoder){
+        for entity in entities{
+            entity.draw(encoder: encoder)
+        }
     }
-    func drawReflectionCube(encoder: MTLRenderCommandEncoder){
-        cube.draw(encoder: encoder, reflectY: true)
+    func drawReflection(encoder: MTLRenderCommandEncoder){
+        for entity in entities{
+            entity.draw(encoder: encoder, reflectY: true)
+        }
     }
+   
     func drawPlane(encoder: MTLRenderCommandEncoder){
         plane.draw(encoder: encoder)
     }
@@ -47,6 +53,8 @@ extension Scene{
         mesh.drawPrimitives(encoder)
     }
     func update(){
-        cube.update()
+        for entity in entities{
+            entity.update()
+        }
     }
 }

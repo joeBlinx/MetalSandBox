@@ -48,7 +48,7 @@ extension Engine{
         encoder.setFragmentSamplerState(sampler, index: 0)
         encoder.setFragmentBytes(camera.getPos().elements, length: MemoryLayout<vec4>.size, index: 1)
        
-        scene.drawCube(encoder: encoder)
+        scene.draw(encoder: encoder)
         
         encoder.setDepthStencilState(Provider.depthState.get(device: device, "createCanvas"))
 
@@ -56,7 +56,7 @@ extension Engine{
         
         encoder.setDepthStencilState(Provider.depthState.get(device: device, "useCanvas"))
     
-        scene.drawReflectionCube(encoder: encoder)
+        scene.drawReflection(encoder: encoder)
         
         encoder.setDepthStencilState(Provider.depthState.get(device: device, "depth"))
         encoder.setRenderPipelineState(Provider.pipelineState.get(device: device, "basic"))
