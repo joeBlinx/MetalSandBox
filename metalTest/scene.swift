@@ -28,7 +28,7 @@ class Scene{
         plane = Entity(device: device, model: "plane")
         plane.scale(vec3(2))
         
-        skybox = SkyBox(device: device)
+        skybox = SkyBox(device: device, singleImage: "skyboxForest.png")
     }
 }
 
