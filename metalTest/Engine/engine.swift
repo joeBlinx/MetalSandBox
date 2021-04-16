@@ -40,7 +40,7 @@ extension Engine{
         
         scene.drawSkybox(encoder: encoder)
         
-        encoder.setRenderPipelineState(Provider.pipelineState.get(device:device, "basic"))
+        encoder.setRenderPipelineState(Provider.pipelineState.get(device:device, "color"))
         encoder.setDepthStencilState(Provider.depthState.get(device: device, "depth"))
         
         encoder.setVertexBytes(camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
@@ -57,5 +57,9 @@ extension Engine{
         encoder.setDepthStencilState(Provider.depthState.get(device: device, "useCanvas"))
     
         scene.drawReflectionCube(encoder: encoder)
+        
+        encoder.setDepthStencilState(Provider.depthState.get(device: device, "depth"))
+        encoder.setRenderPipelineState(Provider.pipelineState.get(device: device, "basic"))
+        scene.drawMesh(encoder: encoder)
     }
 }

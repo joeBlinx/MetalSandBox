@@ -8,7 +8,7 @@
 #include <metal_stdlib>
 #include "shader_definitions.h"
 using namespace metal;
-struct VertexOut {
+struct VertexColorOut {
     float4 color;
     float4 pos [[position]];
     float2 texCoord;
@@ -21,13 +21,13 @@ struct ColorVertexIn{
     float3 pos [[attribute(1)]];
     float2 texCoord [[attribute(2)]];
 };
-vertex VertexOut vertexShader(const ColorVertexIn vertexArray [[ stage_in ]],
+vertex VertexColorOut vertexShader(const ColorVertexIn vertexArray [[ stage_in ]],
                               const device UniformBuffer &uni [[buffer(1)]],
                               const device CameraBuffer &camera [[buffer(2)]]){
     
     auto vertex_in = vertexArray;
     
-    return VertexOut{vertex_in.color,
+    return {vertex_in.color,
         camera.vp * uni.model * float4(vertex_in.pos, 1),
         vertex_in.texCoord,
         float3(uni.model * float4(vertex_in.pos, 1))
@@ -37,7 +37,7 @@ vertex VertexOut vertexShader(const ColorVertexIn vertexArray [[ stage_in ]],
 struct CamPos{
     vector_float3 campos;
 };
-fragment float4 fragmentShader(VertexOut interpolated [[ stage_in ]],
+fragment float4 fragmentShader(VertexColorOut interpolated [[ stage_in ]],
                                sampler sampler2d[[ sampler(0) ]],
                                texture2d<float> texture [[ texture(0) ]],
                                const device MaterialBuffer& material [[ buffer(0) ]],
@@ -70,8 +70,7 @@ struct VertexSkyBoxOut{
     float3 texCoord;
 };
 vertex VertexSkyBoxOut skyboxVertexShader(const VertexSkyBoxIn vertexArray [[stage_in]],
-                              const device CameraBuffer &camera [[buffer(1)]],
-                              unsigned int vid [[vertex_id]]){
+                              const device CameraBuffer &camera [[buffer(1)]]){
     
     auto vertex_in = vertexArray;
     
@@ -87,3 +86,35 @@ fragment float4 skyboxFragmentShader(VertexSkyBoxOut interpolated [[ stage_in ]]
     return texture.sample(sampler2d, interpolated.texCoord);
 }
 
+
+
+struct VertexIn{
+    float3 pos [[attribute (0)]];
+    float3 normal [[attribute (1)]];
+    float2 texCoord [[attribute (2)]];
+};
+
+struct VertexOut{
+    float4 pos [[ position ]];
+    float3 normal;
+    float2 texCoord;
+};
+
+
+vertex VertexOut mainVertexShader(const VertexIn in[[stage_in]],
+                                  const device UniformBuffer &uni [[buffer(1)]],
+                                  const device CameraBuffer &camera [[buffer(2)]]
+                                  ){
+    return {
+        camera.vp * uni.model * float4(in.pos, 1),
+        normalize(uni.model * float4(in.normal, 0.0)).xyz,
+        in.texCoord
+    };
+}
+
+fragment float4 mainFragmentShader(const VertexOut in[[stage_in]] ,
+                                   sampler sampler2d[[ sampler(0) ]],
+                                   texture2d<float> texture [[ texture(0) ]]
+                                  ){
+    return texture.sample(sampler2d, in.texCoord);
+}

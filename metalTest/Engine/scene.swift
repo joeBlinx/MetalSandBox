@@ -14,6 +14,8 @@ class Scene{
     private let plane: Entity
     let skybox: SkyBox
     
+    private let mesh: ModelMesh
+    
     init(device: MTLDevice){
         cube = Entity(device: device, model: "cube")
         cube.setTexture(device: device, textureName: "realCat.jpg")
@@ -29,6 +31,7 @@ class Scene{
         plane.scale(vec3(2))
         
         skybox = SkyBox(device: device, singleImage: "skyboxForest.png")
+        mesh = ModelMesh(device: device, modelName: "bunny")
     }
 }
 
@@ -44,6 +47,9 @@ extension Scene{
     }
     func drawSkybox(encoder: MTLRenderCommandEncoder){
         skybox.draw(encoder: encoder)
+    }
+    func drawMesh(encoder: MTLRenderCommandEncoder){
+        mesh.drawPrimitives(encoder)
     }
     func update(){
         cube.update()

@@ -38,8 +38,9 @@ struct Provider{
             ])
     
     static let pipelineState = ProviderImpl<MTLRenderPipelineState>(vault: [
-        "basic": pair(function: createRenderPipelineBasic),
-        "skybox": pair(function: createRenderPipelineSkyBox)
+        "color": pair(function: createRenderPipelineBasic),
+        "skybox": pair(function: createRenderPipelineSkyBox),
+        "basic": pair(function: createRenderPipelineState)
     ])
     
     static let samplerState = ProviderImpl<MTLSamplerState>(vault: [

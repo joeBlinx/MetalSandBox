@@ -45,3 +45,23 @@ func createRenderPipelineSkyBox(device: MTLDevice) -> MTLRenderPipelineState{
     }
     return result!
 }
+
+func createRenderPipelineState(device: MTLDevice)->MTLRenderPipelineState{
+    let pipelineDescriptor = MTLRenderPipelineDescriptor()
+    let library = device.makeDefaultLibrary()
+    pipelineDescriptor.vertexFunction = library?.makeFunction(name: "mainVertexShader")
+    pipelineDescriptor.fragmentFunction = library?.makeFunction(name: "mainFragmentShader")
+    pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+    pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float_stencil8
+    pipelineDescriptor.stencilAttachmentPixelFormat = .depth32Float_stencil8
+    pipelineDescriptor.vertexDescriptor = Provider.vertexDescriptor.get(device: device, "color")
+    
+    let result:MTLRenderPipelineState?
+    do {
+        result = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
+    }catch{
+        result = nil
+        print("Unable to create render pipeline state")
+    }
+    return result!
+}
