@@ -29,6 +29,7 @@
 		81CC91882627422900CD2858 /* skyboxForest.png in Resources */ = {isa = PBXBuildFile; fileRef = 81CC91872627422900CD2858 /* skyboxForest.png */; };
 		81CC918B2627476C00CD2858 /* skybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC918A2627476C00CD2858 /* skybox.swift */; };
 		81CF6D5726285A7E00CC6176 /* loadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D5626285A7E00CC6176 /* loadImage.swift */; };
+		81CF6D622629801900CC6176 /* provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D612629801900CC6176 /* provider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		81CC91872627422900CD2858 /* skyboxForest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skyboxForest.png; sourceTree = "<group>"; };
 		81CC918A2627476C00CD2858 /* skybox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skybox.swift; sourceTree = "<group>"; };
 		81CF6D5626285A7E00CC6176 /* loadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadImage.swift; sourceTree = "<group>"; };
+		81CF6D612629801900CC6176 /* provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = provider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		810957AE262304EA003388F3 /* metalTest */ = {
 			isa = PBXGroup;
 			children = (
+				81CF6D5F262975B200CC6176 /* Graphics */,
 				81CC91692626C11300CD2858 /* Assets */,
 				81CF6D5526285A6E00CC6176 /* Utils */,
 				81CC918226272E5400CD2858 /* Input */,
@@ -98,10 +101,6 @@
 				8181F577262493AF0023DA74 /* Entities */,
 				813A4E1826243D1100EDED21 /* UIStuff */,
 				813A4E0F2623211700EDED21 /* shaders */,
-				813A4DF726230AE500EDED21 /* renderer.swift */,
-				81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */,
-				81CC916B2626CBC500CD2858 /* texture.swift */,
-				81CC91712627036C00CD2858 /* sampler.swift */,
 				81CC9174262706BA00CD2858 /* scene.swift */,
 			);
 			path = metalTest;
@@ -173,6 +172,18 @@
 				81CF6D5626285A7E00CC6176 /* loadImage.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		81CF6D5F262975B200CC6176 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				813A4DF726230AE500EDED21 /* renderer.swift */,
+				81CC91712627036C00CD2858 /* sampler.swift */,
+				81CC916B2626CBC500CD2858 /* texture.swift */,
+				81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */,
+				81CF6D612629801900CC6176 /* provider.swift */,
+			);
+			path = Graphics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +279,7 @@
 				81CC9175262706BA00CD2858 /* scene.swift in Sources */,
 				81CC918426272E8000CD2858 /* keyboard.swift in Sources */,
 				810957B0262304EA003388F3 /* AppDelegate.swift in Sources */,
+				81CF6D622629801900CC6176 /* provider.swift in Sources */,
 				81CF6D5726285A7E00CC6176 /* loadImage.swift in Sources */,
 				8181F5862624A1C10023DA74 /* entities.swift in Sources */,
 				813A4E112623213000EDED21 /* shaders.metal in Sources */,

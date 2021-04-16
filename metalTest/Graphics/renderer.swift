@@ -17,11 +17,6 @@ class Renderer : NSObject, MTKViewDelegate{
     private let pipelineState: MTLRenderPipelineState
     private let skyboxPipelineState: MTLRenderPipelineState
     
-    private let depthStencilState: MTLDepthStencilState
-    private let preStencilState: MTLDepthStencilState
-    private let postStencilState: MTLDepthStencilState
-    private let skyBoxDepthState: MTLDepthStencilState
-    
     private let sampler:MTLSamplerState!
     private let camera:Camera
     
@@ -42,11 +37,6 @@ class Renderer : NSObject, MTKViewDelegate{
         let viewSize = mtk_view.drawableSize
         camera = Camera(viewWidth: Float(viewSize.width), viewHeight: Float(viewSize.height))
         sampler = createLinearSampler(device: device)
-        
-        depthStencilState = createBasicDepthStencilState(device)
-        preStencilState = createDepthStencilStateForCreatingCanvas(device)
-        postStencilState = createDepthStencilStateForUsingCanvas(device)
-        skyBoxDepthState = createDepthStencilForSkyBox(device)
       
     }
   
@@ -59,7 +49,7 @@ class Renderer : NSObject, MTKViewDelegate{
         guard let render_encoder = command_buffer.makeRenderCommandEncoder(descriptor: renderpass_descriptor) else {return }
         
         
-        render_encoder.setDepthStencilState(skyBoxDepthState)
+        render_encoder.setDepthStencilState(Provider.depthState.get(device:device, "skybox"))
         render_encoder.setRenderPipelineState(skyboxPipelineState)
         render_encoder.setVertexBytes(self.camera.getVPSkyBox().elements, length: MemoryLayout<mat4>.size, index: 1)
         render_encoder.setFragmentSamplerState(sampler, index: 0)
@@ -67,7 +57,7 @@ class Renderer : NSObject, MTKViewDelegate{
         
         render_encoder.setRenderPipelineState(pipelineState)
         
-        render_encoder.setDepthStencilState(self.depthStencilState)
+        render_encoder.setDepthStencilState(Provider.depthState.get(device: device, "depth"))
         render_encoder.setVertexBytes(self.camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
         render_encoder.setFragmentTexture(scene.skybox.texture, index: 1)
         render_encoder.setFragmentSamplerState(sampler, index: 0)
@@ -75,11 +65,11 @@ class Renderer : NSObject, MTKViewDelegate{
        
         scene.drawCube(encoder: render_encoder)
         
-        render_encoder.setDepthStencilState(preStencilState)
+        render_encoder.setDepthStencilState(Provider.depthState.get(device: device, "createCanvas"))
 
         scene.drawPlane(encoder: render_encoder)
         
-        render_encoder.setDepthStencilState(postStencilState)
+        render_encoder.setDepthStencilState(Provider.depthState.get(device: device, "useCanvas"))
     
         scene.drawReflectionCube(encoder: render_encoder)
         render_encoder.endEncoding()
