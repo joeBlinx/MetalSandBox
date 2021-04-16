@@ -5,35 +5,42 @@
 //  Created by techsoft3d on 16/04/2021.
 //
 import Metal
+
+struct pair<T>{
+    var value: T?
+    var function: (MTLDevice) -> T
+}
 struct ProviderImpl<T>{
-    let vault:[String: (T?,(MTLDevice)->T)]
+    let vault:[String: pair<T>]
     func get(device: MTLDevice, _ name: String) -> T{
-        var (stateOpt,  function) = vault[name]!
+        let values = vault[name]!
+        var stateOpt = values.value
+        let function = values.function
         if stateOpt == nil {
             stateOpt = function(device)
         }
         
         return stateOpt!
     }
-    init(vault: [String: (T?, (MTLDevice)->T)]){
+    init(vault: [String: pair<T>]){
         self.vault = vault
     }
 }
 
 struct Provider{
     static let depthState = ProviderImpl<MTLDepthStencilState>(vault: [
-        "depth": (MTLDepthStencilState?(nil), createBasicDepthStencilState),
-        "createCanvas": (MTLDepthStencilState?(nil), createDepthStencilStateForCreatingCanvas),
-        "useCanvas": (MTLDepthStencilState?(nil), createDepthStencilStateForUsingCanvas),
-        "skybox": (MTLDepthStencilState?(nil), createDepthStencilForSkyBox)
+        "depth": pair(value:nil, function: createBasicDepthStencilState),
+        "createCanvas": pair(value: nil, function: createDepthStencilStateForCreatingCanvas),
+        "useCanvas": pair (value: nil, function: createDepthStencilStateForUsingCanvas),
+        "skybox": pair(value: nil, function: createDepthStencilForSkyBox)
             ])
     
     static let pipelineState = ProviderImpl<MTLRenderPipelineState>(vault: [
-        "basic": (MTLRenderPipelineState?(nil), createRenderPipelineBasic),
-        "skybox": (MTLRenderPipelineState?(nil), createRenderPipelineSkyBox)
+        "basic": pair(value: nil, function: createRenderPipelineBasic),
+        "skybox": pair(value: nil, function: createRenderPipelineSkyBox)
     ])
     
     static let samplerState = ProviderImpl<MTLSamplerState>(vault: [
-        "linear": (MTLSamplerState?(nil), createLinearSampler)
+        "linear": pair(value: nil, function: createLinearSampler)
     ])
 }
