@@ -32,4 +32,8 @@ struct Provider{
         "basic": (MTLRenderPipelineState?(nil), createRenderPipelineBasic),
         "skybox": (MTLRenderPipelineState?(nil), createRenderPipelineSkyBox)
     ])
+    
+    static let samplerState = ProviderImpl<MTLSamplerState>(vault: [
+        "linear": (MTLSamplerState?(nil), createLinearSampler)
+    ])
 }

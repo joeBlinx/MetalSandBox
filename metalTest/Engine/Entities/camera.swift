@@ -33,7 +33,7 @@ class Camera{
     func getPos() -> vec3{
         eye
     }
-    func update(){
+    func handleInput(){
         let delta: Float = 0.1
         if Keyboard.isKeyPressed(.downArrow) {
             eye.z -= delta
