@@ -25,10 +25,16 @@ class Entity{
 
 extension Entity{
     
-    func draw(encoder: MTLRenderCommandEncoder){
+    func draw(encoder: MTLRenderCommandEncoder, reflectY: Bool = false){
         
         let (buffer, indices) = getDrawings()
         encoder.setVertexBuffer(buffer, offset: 0, index: 0)
+        let model:mat4
+        if(reflectY){
+            model = SGLMath.scale(mat4(1), vec3(1, -1, 1))*self.model
+        }else{
+            model = self.model
+        }
         encoder.setVertexBytes(model.elements, length: MemoryLayout<mat4>.size, index: 1)
         encoder.setFragmentBytes(&material, length: MemoryLayout<MaterialBuffer>.size, index: 0)
         if(material.useTexture == 1){
