@@ -23,11 +23,7 @@ class GameView: MTKView{
         print("My gpu is: \(default_device)")
         device = default_device
         
-        guard let renderer_temp = Renderer(self) else{
-            print("Renderer failed to initialize")
-            return
-        }
-        renderer = renderer_temp
+        renderer = Renderer(self)
         delegate = renderer
     	
     }

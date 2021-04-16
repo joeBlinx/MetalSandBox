@@ -14,8 +14,6 @@ class Renderer : NSObject, MTKViewDelegate{
     
     private var device: MTLDevice
     private var command_queue: MTLCommandQueue
-    private let pipelineState: MTLRenderPipelineState
-    private let skyboxPipelineState: MTLRenderPipelineState
     
     private let sampler:MTLSamplerState!
     private let camera:Camera
@@ -23,16 +21,10 @@ class Renderer : NSObject, MTKViewDelegate{
     private let scene:Scene
     
     
-    init?(_ mtk_view:MTKView){
+    init(_ mtk_view:MTKView){
         self.device = mtk_view.device!
         self.command_queue = device.makeCommandQueue()!
-        do{
-            pipelineState = try Renderer.build_render_pipeline_with(device: device, metalKitView: mtk_view)
-            skyboxPipelineState = try Renderer.buildRenderPipelineSkyBox(device: device, metalKitView: mtk_view)
-        }catch{
-            print("Unable to create pipeline state")
-            return nil
-        }
+        
         scene = Scene(device: device)
         let viewSize = mtk_view.drawableSize
         camera = Camera(viewWidth: Float(viewSize.width), viewHeight: Float(viewSize.height))
@@ -50,12 +42,12 @@ class Renderer : NSObject, MTKViewDelegate{
         
         
         render_encoder.setDepthStencilState(Provider.depthState.get(device:device, "skybox"))
-        render_encoder.setRenderPipelineState(skyboxPipelineState)
+        render_encoder.setRenderPipelineState(Provider.pipelineState.get(device:device, "skybox"))
         render_encoder.setVertexBytes(self.camera.getVPSkyBox().elements, length: MemoryLayout<mat4>.size, index: 1)
         render_encoder.setFragmentSamplerState(sampler, index: 0)
         scene.drawSkybox(encoder: render_encoder)
         
-        render_encoder.setRenderPipelineState(pipelineState)
+        render_encoder.setRenderPipelineState(Provider.pipelineState.get(device:device, "basic"))
         
         render_encoder.setDepthStencilState(Provider.depthState.get(device: device, "depth"))
         render_encoder.setVertexBytes(self.camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
@@ -83,30 +75,6 @@ class Renderer : NSObject, MTKViewDelegate{
     }
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
     
-    }
-    class func build_render_pipeline_with(device: MTLDevice, metalKitView: MTKView) throws -> MTLRenderPipelineState{
-        let pipelineDescriptor = MTLRenderPipelineDescriptor()
-        let library = device.makeDefaultLibrary()
-        pipelineDescriptor.vertexFunction = library?.makeFunction(name: "vertexShader")
-        pipelineDescriptor.fragmentFunction = library?.makeFunction(name: "fragmentShader")
-        pipelineDescriptor.colorAttachments[0].pixelFormat = metalKitView.colorPixelFormat
-        pipelineDescriptor.depthAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
-        pipelineDescriptor.stencilAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
-        
-        
-        return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
-    }
-    
-    class func buildRenderPipelineSkyBox(device: MTLDevice, metalKitView: MTKView) throws -> MTLRenderPipelineState{
-        let pipelineDescriptor = MTLRenderPipelineDescriptor()
-        let library = device.makeDefaultLibrary()
-        pipelineDescriptor.vertexFunction = library?.makeFunction(name: "skyboxVertexShader")
-        pipelineDescriptor.fragmentFunction = library?.makeFunction(name: "skyboxFragmentShader")
-        pipelineDescriptor.colorAttachments[0].pixelFormat = metalKitView.colorPixelFormat
-        pipelineDescriptor.depthAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
-        pipelineDescriptor.stencilAttachmentPixelFormat = metalKitView.depthStencilPixelFormat
-       
-        return try device.makeRenderPipelineState(descriptor: pipelineDescriptor)
     }
     
 }

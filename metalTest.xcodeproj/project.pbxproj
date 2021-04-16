@@ -30,6 +30,7 @@
 		81CC918B2627476C00CD2858 /* skybox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CC918A2627476C00CD2858 /* skybox.swift */; };
 		81CF6D5726285A7E00CC6176 /* loadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D5626285A7E00CC6176 /* loadImage.swift */; };
 		81CF6D622629801900CC6176 /* provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D612629801900CC6176 /* provider.swift */; };
+		81CF6D65262987FA00CC6176 /* pipelineStateCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D64262987FA00CC6176 /* pipelineStateCreator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		81CC918A2627476C00CD2858 /* skybox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skybox.swift; sourceTree = "<group>"; };
 		81CF6D5626285A7E00CC6176 /* loadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadImage.swift; sourceTree = "<group>"; };
 		81CF6D612629801900CC6176 /* provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = provider.swift; sourceTree = "<group>"; };
+		81CF6D64262987FA00CC6176 /* pipelineStateCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pipelineStateCreator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				81CC916B2626CBC500CD2858 /* texture.swift */,
 				81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */,
 				81CF6D612629801900CC6176 /* provider.swift */,
+				81CF6D64262987FA00CC6176 /* pipelineStateCreator.swift */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				81CC918426272E8000CD2858 /* keyboard.swift in Sources */,
 				810957B0262304EA003388F3 /* AppDelegate.swift in Sources */,
 				81CF6D622629801900CC6176 /* provider.swift in Sources */,
+				81CF6D65262987FA00CC6176 /* pipelineStateCreator.swift in Sources */,
 				81CF6D5726285A7E00CC6176 /* loadImage.swift in Sources */,
 				8181F5862624A1C10023DA74 /* entities.swift in Sources */,
 				813A4E112623213000EDED21 /* shaders.metal in Sources */,

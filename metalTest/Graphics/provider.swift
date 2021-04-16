@@ -27,4 +27,9 @@ struct Provider{
         "useCanvas": (MTLDepthStencilState?(nil), createDepthStencilStateForUsingCanvas),
         "skybox": (MTLDepthStencilState?(nil), createDepthStencilForSkyBox)
             ])
+    
+    static let pipelineState = ProviderImpl<MTLRenderPipelineState>(vault: [
+        "basic": (MTLRenderPipelineState?(nil), createRenderPipelineBasic),
+        "skybox": (MTLRenderPipelineState?(nil), createRenderPipelineSkyBox)
+    ])
 }
