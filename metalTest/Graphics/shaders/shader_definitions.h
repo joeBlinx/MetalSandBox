@@ -20,6 +20,5 @@ struct CameraBuffer{
 
 struct MaterialBuffer{
     int useTexture;
-    int invertUV;
 };
 #endif /* shader_definitions_h */

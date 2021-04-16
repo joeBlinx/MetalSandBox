@@ -47,9 +47,6 @@ fragment float4 fragmentShader(VertexColorOut interpolated [[ stage_in ]],
     float4 color;
     if(material.useTexture){
         auto texCoord = interpolated.texCoord;
-        if(material.invertUV){
-            texCoord.y = 1 - texCoord.y;
-        }
         color = texture.sample(sampler2d, texCoord);
     }else{
         float3 normal(0, 1, 0);

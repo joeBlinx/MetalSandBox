@@ -15,7 +15,7 @@ class Entity{
     ]
     private var model: mat4 = mat4(1.0)
     private let buffer: VertexBuffer
-    private var material = MaterialBuffer(useTexture: 0, invertUV: 0)
+    private var material = MaterialBuffer(useTexture: 0)
     private var texture: Texture?
     
     init(device: MTLDevice, model: String){
@@ -47,9 +47,8 @@ extension Entity{
     func setTexture(device: MTLDevice, textureName: String){
         texture = Texture(device: device, textureName)
     }
-    func setMaterial(useTexture:Int32 = -1, invertUv:Int32 = -1){
+    func setMaterial(useTexture:Int32 = -1){
         material.useTexture = useTexture != -1 ? useTexture: material.useTexture
-        material.invertUV = invertUv != -1 ? invertUv: material.invertUV
     }
     func move(_ v: vec3){
         model = SGLMath.translate(model, v)
