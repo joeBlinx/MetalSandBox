@@ -8,7 +8,7 @@ import SGLMath
 import MetalKit
 
 class Entity{
-    static let model:[String: ([Vertex], [UInt32])] =
+    static let model:[String: ([ColorVertex], [UInt32])] =
     [
         "cube" : cubeVertices(),
         "plane" : planeVertices(),

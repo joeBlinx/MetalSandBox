@@ -14,6 +14,7 @@ func createRenderPipelineBasic(device: MTLDevice) -> MTLRenderPipelineState{
     pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
     pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float_stencil8
     pipelineDescriptor.stencilAttachmentPixelFormat = .depth32Float_stencil8
+    pipelineDescriptor.vertexDescriptor = Provider.vertexDescriptor.get(device: device, "color")
     
     let result:MTLRenderPipelineState?
     do {
@@ -33,7 +34,8 @@ func createRenderPipelineSkyBox(device: MTLDevice) -> MTLRenderPipelineState{
     pipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
     pipelineDescriptor.depthAttachmentPixelFormat = .depth32Float_stencil8
     pipelineDescriptor.stencilAttachmentPixelFormat = .depth32Float_stencil8
-   
+    pipelineDescriptor.vertexDescriptor = Provider.vertexDescriptor.get(device: device, "skybox")
+    
     let result:MTLRenderPipelineState?
     do {
         result = try device.makeRenderPipelineState(descriptor: pipelineDescriptor)

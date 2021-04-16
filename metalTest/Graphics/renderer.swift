@@ -61,6 +61,7 @@ extension Renderer {
         renderpassDescriptor.depthAttachment.loadAction = .clear
         renderpassDescriptor.stencilAttachment.clearStencil = 0
         renderpassDescriptor.stencilAttachment.loadAction = .clear
+        
     }
     
     

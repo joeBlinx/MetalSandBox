@@ -15,12 +15,17 @@ struct VertexOut {
     float3 positionWorldSpace;
 };
 
-vertex VertexOut vertexShader(const device Vertex *vertexArray [[buffer(0)]],
+
+struct ColorVertexIn{
+    float4 color [[attribute(0)]];
+    float3 pos [[attribute(1)]];
+    float2 texCoord [[attribute(2)]];
+};
+vertex VertexOut vertexShader(const ColorVertexIn vertexArray [[ stage_in ]],
                               const device UniformBuffer &uni [[buffer(1)]],
-                              const device CameraBuffer &camera [[buffer(2)]],
-                              unsigned int vid [[vertex_id]]){
+                              const device CameraBuffer &camera [[buffer(2)]]){
     
-    auto vertex_in = vertexArray[vid];
+    auto vertex_in = vertexArray;
     
     return VertexOut{vertex_in.color,
         camera.vp * uni.model * float4(vertex_in.pos, 1),
@@ -56,15 +61,19 @@ fragment float4 fragmentShader(VertexOut interpolated [[ stage_in ]],
 }
 
 
+struct VertexSkyBoxIn{
+    float3 pos [[ attribute (0) ]];
+};
+
 struct VertexSkyBoxOut{
     float4 pos [[position]];
     float3 texCoord;
 };
-vertex VertexSkyBoxOut skyboxVertexShader(const device VertexSkyBox *vertexArray [[buffer(0)]],
+vertex VertexSkyBoxOut skyboxVertexShader(const VertexSkyBoxIn vertexArray [[stage_in]],
                               const device CameraBuffer &camera [[buffer(1)]],
                               unsigned int vid [[vertex_id]]){
     
-    auto vertex_in = vertexArray[vid];
+    auto vertex_in = vertexArray;
     
     return VertexSkyBoxOut{camera.vp * float4(vertex_in.pos, 1),
         vertex_in.pos.xyz};

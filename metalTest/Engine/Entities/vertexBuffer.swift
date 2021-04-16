@@ -26,3 +26,4 @@ class VertexBuffer{
         memcpy(self.buffer.contents() + self.indices.offset, indices, indicesBytesSize)
     }
 }
+

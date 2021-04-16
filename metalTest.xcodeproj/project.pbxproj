@@ -32,6 +32,8 @@
 		81CF6D622629801900CC6176 /* provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D612629801900CC6176 /* provider.swift */; };
 		81CF6D65262987FA00CC6176 /* pipelineStateCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D64262987FA00CC6176 /* pipelineStateCreator.swift */; };
 		81CF6D69262997CB00CC6176 /* engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D68262997CB00CC6176 /* engine.swift */; };
+		81CF6D702629B86000CC6176 /* bunny.obj in Resources */ = {isa = PBXBuildFile; fileRef = 81CF6D6F2629B86000CC6176 /* bunny.obj */; };
+		81CF6D732629C2AF00CC6176 /* vertexDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D722629C2AF00CC6176 /* vertexDescriptor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,8 @@
 		81CF6D612629801900CC6176 /* provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = provider.swift; sourceTree = "<group>"; };
 		81CF6D64262987FA00CC6176 /* pipelineStateCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pipelineStateCreator.swift; sourceTree = "<group>"; };
 		81CF6D68262997CB00CC6176 /* engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = engine.swift; sourceTree = "<group>"; };
+		81CF6D6F2629B86000CC6176 /* bunny.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.obj; sourceTree = "<group>"; };
+		81CF6D722629C2AF00CC6176 /* vertexDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vertexDescriptor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,7 @@
 		81CC91692626C11300CD2858 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				81CF6D6F2629B86000CC6176 /* bunny.obj */,
 				81CC91872627422900CD2858 /* skyboxForest.png */,
 				81CC917C26270C4200CD2858 /* realCat.jpg */,
 			);
@@ -186,6 +191,7 @@
 				81CC91622625FF5500CD2858 /* depthStencilStateCreation.swift */,
 				81CF6D612629801900CC6176 /* provider.swift */,
 				81CF6D64262987FA00CC6176 /* pipelineStateCreator.swift */,
+				81CF6D722629C2AF00CC6176 /* vertexDescriptor.swift */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -267,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				810957B4262304EC003388F3 /* Assets.xcassets in Resources */,
+				81CF6D702629B86000CC6176 /* bunny.obj in Resources */,
 				810957B7262304ED003388F3 /* Main.storyboard in Resources */,
 				81CC91882627422900CD2858 /* skyboxForest.png in Resources */,
 				81CC917D26270C4200CD2858 /* realCat.jpg in Resources */,
@@ -294,6 +301,7 @@
 				81CC918426272E8000CD2858 /* keyboard.swift in Sources */,
 				81CF6D69262997CB00CC6176 /* engine.swift in Sources */,
 				810957B0262304EA003388F3 /* AppDelegate.swift in Sources */,
+				81CF6D732629C2AF00CC6176 /* vertexDescriptor.swift in Sources */,
 				81CF6D622629801900CC6176 /* provider.swift in Sources */,
 				81CF6D65262987FA00CC6176 /* pipelineStateCreator.swift in Sources */,
 				81CF6D5726285A7E00CC6176 /* loadImage.swift in Sources */,
