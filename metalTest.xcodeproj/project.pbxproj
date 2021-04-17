@@ -35,6 +35,8 @@
 		81CF6D702629B86000CC6176 /* bunny.obj in Resources */ = {isa = PBXBuildFile; fileRef = 81CF6D6F2629B86000CC6176 /* bunny.obj */; };
 		81CF6D732629C2AF00CC6176 /* vertexDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D722629C2AF00CC6176 /* vertexDescriptor.swift */; };
 		81CF6D782629D01200CC6176 /* mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D772629D01200CC6176 /* mesh.swift */; };
+		81CF6D7E262A002B00CC6176 /* modelMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D7D262A002B00CC6176 /* modelMesh.swift */; };
+		81CF6D83262A007C00CC6176 /* customMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CF6D82262A007C00CC6176 /* customMesh.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		81CF6D6F2629B86000CC6176 /* bunny.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.obj; sourceTree = "<group>"; };
 		81CF6D722629C2AF00CC6176 /* vertexDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vertexDescriptor.swift; sourceTree = "<group>"; };
 		81CF6D772629D01200CC6176 /* mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mesh.swift; sourceTree = "<group>"; };
+		81CF6D7D262A002B00CC6176 /* modelMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modelMesh.swift; sourceTree = "<group>"; };
+		81CF6D82262A007C00CC6176 /* customMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customMesh.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,12 +140,12 @@
 		8181F577262493AF0023DA74 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				81CF6D7C262A001A00CC6176 /* Mesh */,
 				8181F578262493DB0023DA74 /* model.swift */,
 				8181F57D262498F60023DA74 /* vertexBuffer.swift */,
 				8181F5852624A1C10023DA74 /* entities.swift */,
 				8181F58A2624B2C90023DA74 /* camera.swift */,
 				81CC918A2627476C00CD2858 /* skybox.swift */,
-				81CF6D772629D01200CC6176 /* mesh.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -207,6 +211,16 @@
 				81CF6D68262997CB00CC6176 /* engine.swift */,
 			);
 			path = Engine;
+			sourceTree = "<group>";
+		};
+		81CF6D7C262A001A00CC6176 /* Mesh */ = {
+			isa = PBXGroup;
+			children = (
+				81CF6D772629D01200CC6176 /* mesh.swift */,
+				81CF6D7D262A002B00CC6176 /* modelMesh.swift */,
+				81CF6D82262A007C00CC6176 /* customMesh.swift */,
+			);
+			path = Mesh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +310,7 @@
 				8181F579262493DB0023DA74 /* model.swift in Sources */,
 				81CC918026272D0900CD2858 /* keycode.swift in Sources */,
 				81CC91722627036C00CD2858 /* sampler.swift in Sources */,
+				81CF6D7E262A002B00CC6176 /* modelMesh.swift in Sources */,
 				813A4DF826230AE500EDED21 /* renderer.swift in Sources */,
 				81CC91662626178200CD2858 /* GameView.swift in Sources */,
 				8181F57E262498F60023DA74 /* vertexBuffer.swift in Sources */,
@@ -310,6 +325,7 @@
 				81CF6D65262987FA00CC6176 /* pipelineStateCreator.swift in Sources */,
 				81CF6D5726285A7E00CC6176 /* loadImage.swift in Sources */,
 				8181F5862624A1C10023DA74 /* entities.swift in Sources */,
+				81CF6D83262A007C00CC6176 /* customMesh.swift in Sources */,
 				813A4E112623213000EDED21 /* shaders.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,13 +34,11 @@ extension Engine{
         let sampler = Provider.samplerState.get(device: device, "linear")
         
         encoder.setDepthStencilState(Provider.depthState.get(device:device, "skybox"))
-        encoder.setRenderPipelineState(Provider.pipelineState.get(device:device, "skybox"))
         encoder.setVertexBytes(camera.getVPSkyBox().elements, length: MemoryLayout<mat4>.size, index: 1)
         encoder.setFragmentSamplerState(sampler, index: 0)
         
-        scene.drawSkybox(encoder: encoder)
+        scene.drawSkybox(device: device, encoder: encoder)
         
-        encoder.setRenderPipelineState(Provider.pipelineState.get(device:device, "color"))
         encoder.setDepthStencilState(Provider.depthState.get(device: device, "depth"))
         
         encoder.setVertexBytes(camera.getVP().elements, length: MemoryLayout<mat4>.size, index: 2)
@@ -48,18 +46,15 @@ extension Engine{
         encoder.setFragmentSamplerState(sampler, index: 0)
         encoder.setFragmentBytes(camera.getPos().elements, length: MemoryLayout<vec4>.size, index: 1)
        
-        scene.draw(encoder: encoder)
+        scene.draw(device: device, encoder: encoder)
         
         encoder.setDepthStencilState(Provider.depthState.get(device: device, "createCanvas"))
 
-        scene.drawPlane(encoder: encoder)
+        scene.drawPlane(device: device, encoder: encoder)
         
         encoder.setDepthStencilState(Provider.depthState.get(device: device, "useCanvas"))
     
-        scene.drawReflection(encoder: encoder)
+        scene.drawReflection(device: device, encoder: encoder)
         
-        encoder.setDepthStencilState(Provider.depthState.get(device: device, "depth"))
-        encoder.setRenderPipelineState(Provider.pipelineState.get(device: device, "basic"))
-        scene.drawMesh(encoder: encoder)
     }
 }

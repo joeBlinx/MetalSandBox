@@ -1,14 +1,12 @@
 //
-//  mesh.swift
+//  ModelMesh.swift
 //  metalTest
 //
 //  Created by techsoft3d on 16/04/2021.
 //
-import Metal
-import AppKit
 import MetalKit
-
-class ModelMesh{
+import Metal
+class ModelMesh: Mesh{
     private var _meshes: [Any]!
     private var _instanceCount: Int = 1
     
@@ -42,8 +40,9 @@ class ModelMesh{
         self._instanceCount = count
     }
     
-    func drawPrimitives(_ renderCommandEncoder: MTLRenderCommandEncoder) {
+    func draw(_ device: MTLDevice, _ renderCommandEncoder: MTLRenderCommandEncoder) {
         guard let meshes = self._meshes as? [MTKMesh] else { return }
+        renderCommandEncoder.setRenderPipelineState(Provider.pipelineState.get(device: device, "basic"))
         for mesh in meshes {
             for vertexBuffer in mesh.vertexBuffers {
                 renderCommandEncoder.setVertexBuffer(vertexBuffer.buffer, offset: vertexBuffer.offset, index: 0)

@@ -14,44 +14,45 @@ class Scene{
     private var entities:[Entity] = []
     let skybox: SkyBox
     
-    private let mesh: ModelMesh
-    
     init(device: MTLDevice){
-        let cube = Entity(device: device, model: "cube")
+        let cube = Entity(device: device, customModel: "cube")
         cube.setTexture(device: device, textureName: "realCat.jpg")
         cube.setMaterial(useTexture: 1)
         cube.move(vec3(0, 1.1, 0))
         entities.append(cube)
+        entities.append(Entity(device: device, meshModel: "bunny"))
+        entities[1].setTexture(device: device, textureName: "realCat.jpg")
+        entities[1].setMaterial(useTexture: 1)
+        entities[1].scale(vec3(2))
       
-        plane = Entity(device: device, model: "plane")
+        plane = Entity(device: device, customModel: "plane")
         plane.scale(vec3(3))
         
         skybox = SkyBox(device: device, singleImage: "skyboxForest.png")
-        mesh = ModelMesh(device: device, modelName: "bunny")
+       
     }
 }
 
 extension Scene{
-    func draw(encoder: MTLRenderCommandEncoder){
+    func draw(device: MTLDevice, encoder: MTLRenderCommandEncoder){
         for entity in entities{
-            entity.draw(encoder: encoder)
+            entity.draw(device, encoder: encoder)
         }
     }
-    func drawReflection(encoder: MTLRenderCommandEncoder){
+    func drawReflection(device: MTLDevice, encoder: MTLRenderCommandEncoder){
         for entity in entities{
-            entity.draw(encoder: encoder, reflectY: true)
+            entity.draw(device, encoder: encoder, reflectY: true)
         }
     }
    
-    func drawPlane(encoder: MTLRenderCommandEncoder){
-        plane.draw(encoder: encoder)
+    func drawPlane(device: MTLDevice, encoder: MTLRenderCommandEncoder){
+        plane.draw(device, encoder: encoder)
     }
-    func drawSkybox(encoder: MTLRenderCommandEncoder){
-        skybox.draw(encoder: encoder)
+    
+    func drawSkybox(device: MTLDevice, encoder: MTLRenderCommandEncoder){
+        skybox.draw(device, encoder: encoder)
     }
-    func drawMesh(encoder: MTLRenderCommandEncoder){
-        mesh.drawPrimitives(encoder)
-    }
+    
     func update(){
         for entity in entities{
             entity.update()

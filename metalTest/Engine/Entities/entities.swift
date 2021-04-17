@@ -14,21 +14,23 @@ class Entity{
         "plane" : planeVertices(),
     ]
     private var model: mat4 = mat4(1.0)
-    private let buffer: VertexBuffer
     private var material = MaterialBuffer(useTexture: 0)
     private var texture: Texture?
     
-    init(device: MTLDevice, model: String){
-        buffer = VertexBuffer.init(device, model: Entity.model[model]!)
+    private var mesh: Mesh
+    
+    init(device: MTLDevice, customModel: String){
+        mesh = CustomMesh(device: device, model: customModel)
+    }
+    init(device: MTLDevice, meshModel:String){
+        mesh = ModelMesh(device: device, modelName: meshModel)
     }
 }
 
 extension Entity{
     
-    func draw(encoder: MTLRenderCommandEncoder, reflectY: Bool = false){
+    func draw(_ device: MTLDevice, encoder: MTLRenderCommandEncoder, reflectY: Bool = false){
         
-        let (buffer, indices) = getDrawings()
-        encoder.setVertexBuffer(buffer, offset: 0, index: 0)
         let model:mat4
         if(reflectY){
             model = SGLMath.scale(mat4(1), vec3(1, -1, 1))*self.model
@@ -44,10 +46,7 @@ extension Entity{
                 print("useTexture is set to true, but no texture has been load.")
             }
         }
-        encoder.drawIndexedPrimitives(type: .triangle, indexCount: indices.count, indexType: .uint32, indexBuffer: buffer, indexBufferOffset: indices.offset)
-    }
-    func getDrawings() -> (MTLBuffer, Indices){
-        return (buffer.buffer, buffer.indices)
+        mesh.draw(device, encoder)
     }
     
     func setTexture(device: MTLDevice, textureName: String){

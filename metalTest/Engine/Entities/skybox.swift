@@ -106,7 +106,8 @@ struct SkyBox{
 
 }
 extension SkyBox{
-    func draw(encoder: MTLRenderCommandEncoder){
+    func draw(_ device: MTLDevice, encoder: MTLRenderCommandEncoder){
+        encoder.setRenderPipelineState(Provider.pipelineState.get(device: device, "skybox"))
         encoder.setVertexBuffer(vertexBuffer.buffer, offset: 0, index: 0)
         encoder.setFragmentTexture(texture, index: 0)
         let (buffer, indices) = (vertexBuffer.buffer, vertexBuffer.indices)
