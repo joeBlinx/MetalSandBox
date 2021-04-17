@@ -23,7 +23,8 @@ class Scene{
         entities.append(Entity(device: device, meshModel: "bunny"))
         entities[1].setTexture(device: device, textureName: "realCat.jpg")
         entities[1].setMaterial(useTexture: 1)
-        entities[1].scale(vec3(2))
+        entities[1].scale(vec3(1))
+        entities[1].move(vec3(0, 0.5, 0))
       
         plane = Entity(device: device, customModel: "plane")
         plane.scale(vec3(3))

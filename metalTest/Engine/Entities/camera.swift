@@ -33,15 +33,34 @@ class Camera{
     func getPos() -> vec3{
         eye
     }
+    func rotate(angle: vec3){
+        eye = vec3(vec4(eye, 1) * SGLMath.rotate(mat4(1), angle.x, vec3(1, 0, 0)))
+        eye = vec3(vec4(eye, 1) * SGLMath.rotate(mat4(1), angle.y, vec3(0, 1, 0)))
+        eye = vec3(vec4(eye, 1) * SGLMath.rotate(mat4(1), angle.z, vec3(0, 0, 1)))
+        computeView()
+    }
     func handleInput(){
         let delta: Float = 0.1
         if Keyboard.isKeyPressed(.downArrow) {
-            eye.z -= delta
+            eye -= delta*normalize(center-eye)
+        
         }
         if Keyboard.isKeyPressed(.upArrow) {
-            eye.z += delta
+            eye += delta*normalize(center-eye)
         }
-        view = SGLMath.lookAt(eye, center, up)
+        let deltaRotate: Float = 0.005
+        if(Keyboard.isKeyPressed(.leftArrow)){
+            rotate(angle: vec3(0, deltaRotate, 0))
+        }
+        if(Keyboard.isKeyPressed(.rightArrow)){
+            rotate(angle: vec3(0, -deltaRotate, 0))
+        }
+       computeView()
     }
     
+}
+extension Camera{
+    private func computeView(){
+        view = SGLMath.lookAt(eye, center, up)
+    }
 }
