@@ -113,5 +113,5 @@ fragment float4 mainFragmentShader(const VertexOut in[[stage_in]] ,
                                    sampler sampler2d[[ sampler(0) ]],
                                    texture2d<float> texture [[ texture(0) ]]
                                   ){
-    return texture.sample(sampler2d, in.texCoord);
+    return texture.sample(sampler2d, float2(in.texCoord.x, -in.texCoord.y));
 }

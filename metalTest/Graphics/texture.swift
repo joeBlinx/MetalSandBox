@@ -36,6 +36,7 @@ class TextureLoader {
         if let image = Image(filename: _textureName){
             
             let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rgba8Unorm, width: image.width, height: image.height, mipmapped: false)
+            
             result = device.makeTexture(descriptor: textureDescriptor)
             result.replace(region: MTLRegionMake2D(0, 0, image.width, image.height), mipmapLevel: 0, withBytes: image.pixels, bytesPerRow: image.width*image.nbChannels)
             

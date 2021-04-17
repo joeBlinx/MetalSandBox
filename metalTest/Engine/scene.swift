@@ -20,10 +20,10 @@ class Scene{
         cube.setMaterial(useTexture: 1)
         cube.move(vec3(0, 1.1, 0))
         entities.append(cube)
-        entities.append(Entity(device: device, meshModel: "bunny"))
-        entities[1].setTexture(device: device, textureName: "realCat.jpg")
+        entities.append(Entity(device: device, meshModel: "f16"))
+        entities[1].setTexture(device: device, textureName: "F16s.bmp")
         entities[1].setMaterial(useTexture: 1)
-        entities[1].scale(vec3(1))
+        entities[1].scale(vec3(3))
         entities[1].move(vec3(0, 0.5, 0))
       
         plane = Entity(device: device, customModel: "plane")
