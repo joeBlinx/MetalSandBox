@@ -49,7 +49,6 @@ extension Engine{
         scene.draw(device: device, encoder: encoder)
         
         encoder.setDepthStencilState(Provider.depthState.get(device: device, "createCanvas"))
-
         scene.drawPlane(device: device, encoder: encoder)
         
         encoder.setDepthStencilState(Provider.depthState.get(device: device, "useCanvas"))

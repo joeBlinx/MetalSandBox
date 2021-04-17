@@ -20,5 +20,6 @@ struct CameraBuffer{
 
 struct MaterialBuffer{
     int useTexture;
+    vector_float3 color;
 };
 #endif /* shader_definitions_h */

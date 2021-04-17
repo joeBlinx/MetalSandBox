@@ -49,12 +49,22 @@ fragment float4 fragmentShader(VertexColorOut interpolated [[ stage_in ]],
         auto texCoord = interpolated.texCoord;
         color = texture.sample(sampler2d, texCoord);
     }else{
-        float3 normal(0, 1, 0);
-        float3 I = normalize(interpolated.positionWorldSpace - cameraPos.campos);
-        float3 R = reflect(I, normalize(normal));
-        color = textureCube.sample(sampler2d, R);
+        color = float4(material.color, 1);
     }
     return color;
+}
+fragment float4 environmentMappingFragmentShader(VertexColorOut interpolated [[ stage_in ]],
+                               sampler sampler2d[[ sampler(0) ]],
+                               const device MaterialBuffer& material [[ buffer(0) ]],
+                               const device CamPos& cameraPos [[ buffer (1) ]],
+                               texturecube<float> textureCube [[ texture(1) ]]){
+    
+   
+    float3 normal(0, 1, 0);
+    float3 I = normalize(interpolated.positionWorldSpace - cameraPos.campos);
+    float3 R = reflect(I, normalize(normal));
+   
+    return textureCube.sample(sampler2d, R);;
 }
 
 

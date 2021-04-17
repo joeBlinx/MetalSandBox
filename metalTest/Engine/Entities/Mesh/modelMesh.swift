@@ -9,8 +9,10 @@ import Metal
 class ModelMesh: Mesh{
     private var _meshes: [Any]!
     private var _instanceCount: Int = 1
+    internal let pipelineName: String
     
     init(device: MTLDevice, modelName: String) {
+        pipelineName = "basic"
         loadModel(device, modelName)
     }
     
@@ -19,7 +21,7 @@ class ModelMesh: Mesh{
             fatalError("Asset \(modelName) does not exist.")
         }
         
-        let descriptor = MTKModelIOVertexDescriptorFromMetal(Provider.vertexDescriptor.get(device: device, "basic"))
+        let descriptor = MTKModelIOVertexDescriptorFromMetal(Provider.vertexDescriptor.get(device: device, pipelineName))
         (descriptor.attributes[0] as! MDLVertexAttribute).name = MDLVertexAttributePosition
         (descriptor.attributes[1] as! MDLVertexAttribute).name = MDLVertexAttributeNormal
         (descriptor.attributes[2] as! MDLVertexAttribute).name = MDLVertexAttributeTextureCoordinate

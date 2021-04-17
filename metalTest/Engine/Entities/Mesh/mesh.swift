@@ -9,6 +9,7 @@ import AppKit
 import MetalKit
 
 protocol Mesh{
+    var pipelineName: String {get}
     func draw(_ device: MTLDevice, _ encoder: MTLRenderCommandEncoder);
 }
 

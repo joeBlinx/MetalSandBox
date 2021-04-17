@@ -15,18 +15,13 @@ class Scene{
     let skybox: SkyBox
     
     init(device: MTLDevice){
-        let cube = Entity(device: device, customModel: "cube")
-        cube.setTexture(device: device, textureName: "realCat.jpg")
-        cube.setMaterial(useTexture: 1)
-        cube.move(vec3(0, 1.1, 0))
-        entities.append(cube)
         entities.append(Entity(device: device, meshModel: "f16"))
-        entities[1].setTexture(device: device, textureName: "F16s.bmp")
-        entities[1].setMaterial(useTexture: 1)
-        entities[1].scale(vec3(3))
-        entities[1].move(vec3(0, 0.5, 0))
+        entities[0].setTexture(device: device, textureName: "F16s.bmp")
+        entities[0].setMaterial(useTexture: 1)
+        entities[0].scale(vec3(3))
+        entities[0].move(vec3(0, 0.5, 0))
       
-        plane = Entity(device: device, customModel: "plane")
+        plane = Entity(device: device, customModel: "plane", pipelineName: "envMapping")
         plane.scale(vec3(3))
         
         skybox = SkyBox(device: device, singleImage: "skyboxForest.png")

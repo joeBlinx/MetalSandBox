@@ -14,20 +14,17 @@ class Entity{
         "plane" : planeVertices(),
     ]
     private var model: mat4 = mat4(1.0)
-    private var material = MaterialBuffer(useTexture: 0)
+    private var material = MaterialBuffer(useTexture: 0, color: [1, 0, 1])
     private var texture: Texture?
-    
     private var mesh: Mesh
     
-    init(device: MTLDevice, customModel: String){
-        mesh = CustomMesh(device: device, model: customModel)
+    init(device: MTLDevice, customModel: String, pipelineName: String){
+        mesh = CustomMesh(device: device, model: customModel, pipelineName: pipelineName)
     }
     init(device: MTLDevice, meshModel:String){
         mesh = ModelMesh(device: device, modelName: meshModel)
     }
-}
 
-extension Entity{
     
     func draw(_ device: MTLDevice, encoder: MTLRenderCommandEncoder, reflectY: Bool = false){
         
@@ -48,7 +45,9 @@ extension Entity{
         }
         mesh.draw(device, encoder)
     }
-    
+    func setColor(_ color: vector_float3){
+        material.color = color
+    }
     func setTexture(device: MTLDevice, textureName: String){
         texture = Texture(device: device, textureName)
     }
