@@ -9,7 +9,13 @@
 #define shader_definitions_h
 #include <simd/simd.h>
 
-
+struct UniformBuffer{
+    matrix_float4x4 model;
+    matrix_float3x3 normalMatrix;
+};
+struct CamPos{
+    vector_float3 campos;
+};
 struct CameraBuffer{
     matrix_float4x4 vp;
 };

@@ -10,8 +10,9 @@
 		810957B0262304EA003388F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810957AF262304EA003388F3 /* AppDelegate.swift */; };
 		810957B4262304EC003388F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 810957B3262304EC003388F3 /* Assets.xcassets */; };
 		810957B7262304ED003388F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 810957B5262304ED003388F3 /* Main.storyboard */; };
+		811ACF52262CB88F0092077A /* model.metal in Sources */ = {isa = PBXBuildFile; fileRef = 811ACF51262CB88F0092077A /* model.metal */; };
 		813A4DF826230AE500EDED21 /* renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813A4DF726230AE500EDED21 /* renderer.swift */; };
-		813A4E112623213000EDED21 /* shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 813A4E102623213000EDED21 /* shaders.metal */; };
+		813A4E112623213000EDED21 /* colors.metal in Sources */ = {isa = PBXBuildFile; fileRef = 813A4E102623213000EDED21 /* colors.metal */; };
 		813A4E21262449D600EDED21 /* SGLMath in Frameworks */ = {isa = PBXBuildFile; productRef = 813A4E20262449D600EDED21 /* SGLMath */; };
 		813ED542262AD429008B1D3B /* F16s.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 813ED53E262AD429008B1D3B /* F16s.bmp */; };
 		813ED543262AD429008B1D3B /* f16.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 813ED53F262AD429008B1D3B /* f16.mtl */; };
@@ -55,10 +56,11 @@
 		810957B6262304ED003388F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		810957B8262304ED003388F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		810957B9262304ED003388F3 /* metalTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = metalTest.entitlements; sourceTree = "<group>"; };
+		811ACF51262CB88F0092077A /* model.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = model.metal; sourceTree = "<group>"; };
 		813A4DF726230AE500EDED21 /* renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = renderer.swift; sourceTree = "<group>"; };
 		813A4E0D2623204E00EDED21 /* metalTest-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "metalTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		813A4E0E2623206D00EDED21 /* shader_definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shader_definitions.h; sourceTree = "<group>"; };
-		813A4E102623213000EDED21 /* shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = shaders.metal; sourceTree = "<group>"; };
+		813A4E102623213000EDED21 /* colors.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = colors.metal; sourceTree = "<group>"; };
 		813ED53E262AD429008B1D3B /* F16s.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = F16s.bmp; path = f16/F16s.bmp; sourceTree = "<group>"; };
 		813ED53F262AD429008B1D3B /* f16.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = f16.mtl; path = f16/f16.mtl; sourceTree = "<group>"; };
 		813ED540262AD429008B1D3B /* f16.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = f16.obj; path = f16/f16.obj; sourceTree = "<group>"; };
@@ -141,8 +143,9 @@
 			children = (
 				813A4E0D2623204E00EDED21 /* metalTest-Bridging-Header.h */,
 				813A4E0E2623206D00EDED21 /* shader_definitions.h */,
-				813A4E102623213000EDED21 /* shaders.metal */,
+				813A4E102623213000EDED21 /* colors.metal */,
 				813ED550262B40DB008B1D3B /* skybox.metal */,
+				811ACF51262CB88F0092077A /* model.metal */,
 			);
 			path = shaders;
 			sourceTree = "<group>";
@@ -361,8 +364,9 @@
 				81CF6D65262987FA00CC6176 /* pipelineStateCreator.swift in Sources */,
 				81CF6D5726285A7E00CC6176 /* loadImage.swift in Sources */,
 				8181F5862624A1C10023DA74 /* entities.swift in Sources */,
+				811ACF52262CB88F0092077A /* model.metal in Sources */,
 				81CF6D83262A007C00CC6176 /* customMesh.swift in Sources */,
-				813A4E112623213000EDED21 /* shaders.metal in Sources */,
+				813A4E112623213000EDED21 /* colors.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
