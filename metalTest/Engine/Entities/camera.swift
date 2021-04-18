@@ -13,13 +13,18 @@ class Camera{
     private var eye = vec3(0, 1.5, 5)
     private var center = vec3(0, 0.5, 0)
     private let up = vec3(0, 1, 0)
+    private var fov:Float = 70
+    private var ratio:Float = 0
+    
+    
     init(viewWidth: Float, viewHeight: Float){
         view = SGLMath.lookAt(eye, center, up)
         viewResize(viewWidth: viewWidth, viewHeight: viewHeight)
     }
     
     func viewResize(viewWidth: Float, viewHeight: Float){
-        proj = SGLMath.perspective(70.0, viewWidth/viewHeight, 0.1, 100.0)
+        ratio = viewWidth/viewHeight
+        computePerspective()
     }
     func getVP() -> mat4{
         proj * view
@@ -40,27 +45,34 @@ class Camera{
         computeView()
     }
     func handleInput(){
-        let delta: Float = 0.1
+        let delta: Float = 1
         if Keyboard.isKeyPressed(.downArrow) {
-            eye -= delta*normalize(center-eye)
-        
+            fov += delta
+            fov = fov > 100 ? 100: fov
+            computePerspective()
         }
         if Keyboard.isKeyPressed(.upArrow) {
-            eye += delta*normalize(center-eye)
+            fov -= delta
+            fov = fov < 1 ? 1:fov
+            computePerspective()
         }
         let deltaRotate: Float = 0.005
         if(Keyboard.isKeyPressed(.leftArrow)){
             rotate(angle: vec3(0, deltaRotate, 0))
+            computeView()
         }
         if(Keyboard.isKeyPressed(.rightArrow)){
             rotate(angle: vec3(0, -deltaRotate, 0))
+            computeView()
         }
-       computeView()
     }
     
 }
 extension Camera{
     private func computeView(){
         view = SGLMath.lookAt(eye, center, up)
+    }
+    private func computePerspective(){
+        proj = SGLMath.perspective(radians(fov), ratio, 0.1, 100.0)
     }
 }
