@@ -10,10 +10,6 @@
 #include <simd/simd.h>
 
 
-struct UniformBuffer{
-    matrix_float4x4 model;
-};
-
 struct CameraBuffer{
     matrix_float4x4 vp;
 };
