@@ -48,7 +48,6 @@ fragment float4 fragmentShader(VertexColorOut interpolated [[ stage_in ]],
                                sampler sampler2d[[ sampler(0) ]],
                                texture2d<float> texture [[ texture(0) ]],
                                const device MaterialBuffer& material [[ buffer(0) ]],
-                               const device CamPos& cameraPos [[ buffer (1) ]],
                                texturecube<float> textureCube [[ texture(1) ]]){
     
     float4 color;
@@ -105,7 +104,6 @@ fragment float4 mainFragmentShader(const VertexOut in[[stage_in]] ,
                                    sampler sampler2d[[ sampler(0) ]],
                                    texture2d<float> texture [[ texture(0) ]],
                                    const device MaterialBuffer& material [[ buffer(0) ]],
-                                   const device CamPos& cameraPos [[ buffer (1) ]],
                                    const device float3& lightPos [[ buffer (2)]]
                                   ){
     float4 color;
